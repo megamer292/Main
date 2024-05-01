@@ -48,18 +48,22 @@ var InpTwo  = document.getElementById('inp2');
 var Frame = document.querySelector('iframe');
 var Icon = document.querySelector('link');
 var Name = document.querySelector('title');
+    
 function changeSrc(arg) {
     Frame.src = arg;
-}
-function changeIcon(arg) {
-    Icon.href = arg;
-}
-function changeName(arg) {
-    Name.innerHTML = arg;
 }
 function showLink() {
     alert(Frame.src);
 }
+
+    
+function changeName(arg) {
+    Name.innerHTML = arg;
+}
+function changeIcon(arg) {
+    Icon.href = arg;
+}
+    
 function restartEngine() {
     Frame.src = 'https://swisscows.com/en';
 }
