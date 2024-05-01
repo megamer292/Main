@@ -1,0 +1,70 @@
+<head>
+    <title>Classroom</title>
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEACABoBQAAFgAAACgAAAAQAAAAIAAAAAEACAAAAAAAAAEAAAAAAAAAAAAAAAEAAAAAAAAAAAAAYqMdAAC8/wBanhIAAbT0AGSkIQBfoRkAWZ4RAP///wAJt/QAZKQgAF+hGAATuvUAFLr1AFyfFQAVuvUAY6QfAGGiHABbnxQAZqUjAAa29AAHtvQACLb0AGGiGwAQufUAErn1AFufEwBlpSIAYKIaAF2gFwBeoBcA9/f3AAK19AADtfQABLX0AAW19AAMuPUAYqMeAA249QAOuPUAXaAWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAICCSMjFhUVIyMjIyMgAgICIyMjIyMjIyMjIyMjIwQCAiQGBwgICAgICAgIBwMgAiYCFwcICAgICAgICAcaIQInAhEHBwgfHx8fCAcHEiECAgIBBwcHBwcHBwcHBxIiAgIYJSUBBwcICAcHBygOIwICGRAQBwcICAgIBwcHDiMCAgwKChAlCB8fCAYeHSgUAgINGwUKEAcICAcGCx4oFAICDxMbBwcHBwcHHAseHRQCAiMjIyMjIyMjIyMjIyMUAgIjIyMjIyMjIyMjIyMjIwIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//8AAP//AAA="/>
+    
+
+    <style>
+    * {
+        margin-bottom: 10px;
+    }
+    </style>
+
+    
+</head>
+
+
+<body style='margin: 0;'>
+
+
+<iframe width='100%' height='102%' allowfullscreen id='mainFrame' src='https://swisscows.com/en' style='border: none; margin: 0;'></iframe>
+
+<button onclick='window.scroll(0,900);' style='border-radius: 50%; height: 50px; position: absolute; top: 10px; left: 10px;'>MENU</button>
+    
+<div style='width: 100%; height: 30px; background-color: DodgerBlue; margin: 0px; margin-bottom:10px'></div>
+    
+<div style='margin: 10px;'>
+
+<!--Frame settings go here-->
+<input/>
+<button onclick="changeSrc(Inp.value)">Change Frame Link</button>
+<button onclick="showLink();">Show Link</button>
+<button onclick="restartEngine()">Search Engine</button>
+<button onclick="Frame.requestFullscreen()" style='position: absolute; right: 10px'>Fullscreen</button>
+    
+<br/>
+    
+<input id="inp2"/>
+<button  onclick="changeIcon(InpTwo.value)">Change Tab Icon</button> 
+<button onclick="changeName(InpTwo.value)">Change Tab Name</button>
+
+</div>
+</body>
+
+<script>
+var Inp = document.querySelector('input');
+var InpTwo  = document.getElementById('inp2');
+var Frame = document.querySelector('iframe');
+var Icon = document.querySelector('link');
+var Name = document.querySelector('title');
+    
+function changeSrc(arg) {
+    Frame.src = arg;
+}
+function showLink() {
+    alert(Frame.src);
+}
+
+    
+function changeName(arg) {
+    Name.innerHTML = arg;
+}
+function changeIcon(arg) {
+    Icon.href = arg;
+}
+    
+function restartEngine() {
+    Frame.src = 'https://swisscows.com/en';
+}
+</script>
+
+    
