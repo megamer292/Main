@@ -59,9 +59,11 @@ function restartEngine() {
 function menu() {
     if (Menu.style.display == 'none') {
         Menu.style.display = 'block';
+        Frame.style.display = 'none';
     }
     else {
         Menu.style.display = 'none';
+        Frame.style.display = 'initial';
     }
 }
 </script>
