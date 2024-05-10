@@ -18,7 +18,7 @@
 
 <iframe width='100%' height='100%' allowfullscreen id='mainFrame' src='https://swisscows.com/en' style='border: none; margin: 0;'></iframe>
 
-<button onclick='window.scroll(0,900);' style='border-radius: 50%; height: 50px; position: absolute; top: 10px; left: 10px;'>MENU</button>
+<button onclick='menu();' style='border-radius: 50%; height: 50px; position: absolute; top: 10px; left: 10px;'>MENU</button>
 
 <div id='Menu' style='margin: 0;' style='display: none;'>
 
@@ -58,7 +58,10 @@ function restartEngine() {
 }
 function menu() {
     if (Menu.style.display == 'none') {
-        Menu.style.display =
+        Menu.style.display = 'block';
+    }
+    else {
+        Menu.style.display = 'none';
     }
 }
 </script>
