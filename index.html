@@ -27,6 +27,7 @@
 <button onclick="changeSrc(Inp.value)">Change Frame Link</button>
 <button onclick="showLink();">Show Link</button>
 <button onclick="restartEngine()">Search Engine</button>
+<button onclick="listDocument()">Games List</button>
 <button onclick="fullscreen();" style='position: absolute; right: 10px'>Fullscreen</button>
     
 <br/>
@@ -65,6 +66,9 @@ function menu() {
 function fullscreen() {
     Frame.requestFullscreen();
     menu();
+}
+function listDocument() {
+    Frame.src = "https://docs.google.com/document/d/1oS1fesS2wv-IvwFqbXa3waUH2UtHAatMxpTqpDDakf8/edit";
 }
 </script>
 
