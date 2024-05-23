@@ -2,7 +2,7 @@
 <style>html, body, textarea { width: 100%; height: 100%; padding: 0; margin: 20; }</style>
 <textarea id="paste" placeholder="paste here!"></textarea>
 <script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script><script>
-  gun = Gun(['http://localhost:8765/gun', 'https://gun-manhattan.herokuapp.com/gun']);
+  gun = Gun(['https://megamer292.github.io/Main/Chat/index.html']);
   copy = gun.get('test').get('paste');
   paste.oninput = () => { copy.put(paste.value) };
   copy.on((data) => { paste.value = data });
