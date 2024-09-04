@@ -8,7 +8,6 @@
         margin-bottom: 10px;
     }
     </style>
-
     
 </head>
 
@@ -21,7 +20,7 @@
 
 <div id='Menu' style='margin: 0; display: none; padding: none;'>
 
-<div style='width: 100%; height: 30px; background-color: DodgerBlue; margin: 0px; margin-bottom:10px'></div>
+<div style='width: 100%; height: 30px; background-color: DodgerBlue; margin: 0px; margin-bottom:10px'><button id='tutButton'>HOW TO USE</button></div>
 
 <input/>
 <button onclick="changeSrc(Inp.value)">Change Embed Frame Link</button>
@@ -37,11 +36,14 @@
 </body>
 
 <script>
-alert('patch 35')
+alert('patch 38')
 var Inp = document.querySelector('input');
 var Frame = document.querySelector('iframe');
-var Menu = document.getElementById('Menu')
+var Menu = document.getElementById('Menu');
+var tutButton = document.getElementById('tutButton');
 
+tutButton = 
+    
 function changeSrc(arg) {
     Frame.src = arg;
 }
