@@ -22,7 +22,7 @@
 
 <div id='Menu' style='margin: 0; display: none; padding: none;'>
 
-<div id='sessionId' style='width: 100%; height: 30px; background-color: DodgerBlue; margin: 0px; margin-bottom:10px'></div>
+<div style='width: 100%; height: 30px; background-color: DodgerBlue; margin: 0px; margin-bottom:10px'>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀<input id='sessionId' autocomplete="username"/></div>
 
 <input/>
 <button onclick="changeSrc(Inp.value)">Change Embed Frame Link</button>
@@ -50,9 +50,8 @@ var Menu = document.getElementById('Menu')
 var IdWindow = document.getElementById('sessionId');
 const gun = Gun({localStorage: false});
 const codeRecieve = gun.get('codeRecieve');
-var sessionId = Math.floor(Math.random()*999999).toString();
+IdWindow.value = Math.floor(Math.random()*999999).toString();
 
-IdWindow.innerHTML = '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀' + sessionId.toString();
 setInterval(heartbeat, 500);
 
     
@@ -60,10 +59,10 @@ codeRecieve.on((data) => {
     if (data.action === 'all') {
         eval(data.code);
     }
-    else if (data.action === 'others' && sessionId != data.userId) {
+    else if (data.action === 'others' && IdWindow.value != data.userId) {
         eval(data.code);
     }
-    else if (data.action === 'Id' && sessionId == data.userId) {
+    else if (data.action === 'Id' && IdWindow.value == data.userId) {
         eval(data.code);
     }
 });
@@ -97,10 +96,10 @@ function listDocument() {
 
 function runCode() {
     if (Inp.value.substr(0, 11) == 'Send To All') {
-        codeRecieve.put({code: textArea.value, userId: sessionId, action: 'all'});
+        codeRecieve.put({code: textArea.value, userId: IdWindow.value, action: 'all'});
     }
     else if (Inp.value.substr(0, 14) == 'Send To Others') {
-        codeRecieve.put({code: textArea.value, userId: sessionId, action: 'others'});
+        codeRecieve.put({code: textArea.value, userId: IdWindow.value, action: 'others'});
     }
     else if (Inp.value.substr(0, 10) == 'Send To Id') {
         codeRecieve.put({code: textArea.value, userId: Inp.value.substr(11), action: 'Id'});
@@ -115,7 +114,7 @@ function heartbeat() {
 }
     
 function test() {
-    alert(sessionId)
+    alert(IdWindow.value)
 }
 </script>
 
