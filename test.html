@@ -50,7 +50,13 @@ var Menu = document.getElementById('Menu')
 var IdWindow = document.getElementById('sessionId');
 const gun = Gun({localStorage: false});
 const codeRecieve = gun.get('codeRecieve');
-IdWindow.value = Math.floor(Math.random()*999999).toString();
+
+if (localStorage.getItem('Id')==null||localStorage.getItem('Id')=='') {
+    IdWindow.value = Math.floor(Math.random()*999999).toString();
+}
+else {
+    IdWindow.value = localStorage.getItem('Id')
+}
 
 setInterval(heartbeat, 500);
 
@@ -111,6 +117,7 @@ function runCode() {
 
 function heartbeat() {
     gun.get('heartbeat').put('heartbeat');
+    localStorage.setItem("Id", IdWindow.value)
 }
     
 function test() {
