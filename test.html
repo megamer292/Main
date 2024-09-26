@@ -50,6 +50,7 @@ var Frame = document.querySelector('iframe');
 var Menu = document.getElementById('Menu')
 const gun = Gun({localStorage: false});
 const codeRecieve = gun.get('codeRecieve');
+const sessionId = Math.floor(Math.random()*999999)
 
 codeRecieve.on((data) => {
     alert(data.nameUser)
@@ -95,7 +96,7 @@ function runCode() {
 }
 
 function test() {
-codeRecieve.once((data)=> {alert(data.code)})
+    alert(sessionId)
 }
 </script>
 
