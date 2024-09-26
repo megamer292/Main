@@ -48,7 +48,7 @@ var textArea  = document.querySelector('textarea');
 var Frame = document.querySelector('iframe');
 var Menu = document.getElementById('Menu')
 var IdWindow = document.getElementById('sessionId');
-const gun = Gun({localStorage: false, peers: ['http://localhost:8765/gun', 'http://gun-manhattan.herokuapp.com/gun']});
+const gun = Gun({localStorage: false});
 const codeRecieve = gun.get('codeRecieve');
 const sessionId = Math.floor(Math.random()*999999).toString();
 
