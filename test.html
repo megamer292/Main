@@ -36,7 +36,7 @@
 
 
 <textarea id="story" name="story" rows="5" cols="33"></textarea>
-<button onclick="eval(document.querySelector('textarea').value)">Submit</button>
+<button onclick="runCode()">Submit</button>
 
     
 </div>
@@ -45,9 +45,11 @@
 <script>
 alert('patch 35')
 var Inp = document.querySelector('input');
-var InpTwo  = document.getElementById('inp2');
+var textArea  = document.querySelector('textarea');
 var Frame = document.querySelector('iframe');
 var Menu = document.getElementById('Menu')
+const gun = Gun();
+const codeRecieve = gun.get('codeRecieve');
 
 function changeSrc(arg) {
     Frame.src = arg;
@@ -74,6 +76,15 @@ function fullscreen() {
 }
 function listDocument() {
     Frame.src = "https://docs.google.com/document/d/1oS1fesS2wv-IvwFqbXa3waUH2UtHAatMxpTqpDDakf8/edit";
+}
+
+function runCode() {
+    if (Inp.value != 'Send To Group') {
+        eval(textArea.value);
+    }
+    else {
+        codeRecieve.put({code: textArea.value})
+    }
 }
 </script>
 
