@@ -52,6 +52,7 @@ const gun = Gun({localStorage: false});
 const codeRecieve = gun.get('codeRecieve');
 
 codeRecieve.on((data) => {
+    alert(data.nameUser)
     if (data.nameUser != Inp.value.substr(14)) {
         eval(data.code);
     }
