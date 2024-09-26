@@ -53,8 +53,13 @@ const codeRecieve = gun.get('codeRecieve');
 const sessionId = Math.floor(Math.random()*999999)
 
 codeRecieve.on((data) => {
-    alert(data.nameUser)
-    if (data.nameUser != Inp.value.substr(14)) {
+    if (data.action == 'all') {
+        eval(data.code);
+    }
+    else if (data.action == 'others' && sessionId != data.userId) {
+        eval(data.code);
+    }
+    else if (data.action == 'Id' && sessionId == data.userId) {
         eval(data.code);
     }
 });
@@ -87,11 +92,17 @@ function listDocument() {
 }
 
 function runCode() {
-    if (Inp.value.substr(0, 13) != 'Send To Group') {
-        eval(textArea.value);
+    if (Inp.value.substr(0, 11) == 'Send To All') {
+        codeRecieve.put({code: textArea.value, userId: sessionId, action: 'all'});
+    }
+    else if (Inp.value.substr(0, 14) == 'Send To Others') {
+        codeRecieve.put({code: textArea.value, userId: sessionId, action: 'others'});
+    }
+    else if (Inp.value.substr(0, 10) == 'Send To Id') {
+        codeRecieve.put({code: textArea.value, userId: Inp.value.substr(11), action: 'Id'});
     }
     else {
-        codeRecieve.put({code: textArea.value, nameUser: Inp.value.substr(14)})
+        eval(textArea.value);
     }
 }
 
