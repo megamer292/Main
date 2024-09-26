@@ -52,7 +52,7 @@ const gun = Gun({localStorage: false});
 const codeRecieve = gun.get('codeRecieve');
 
 codeRecieve.on((data) => {
-    if (data.name != Inp.value.substr(14)) {
+    if (data.nameUser != Inp.value.substr(14)) {
         eval(data.code);
     }
 });
@@ -89,7 +89,7 @@ function runCode() {
         eval(textArea.value);
     }
     else {
-        codeRecieve.put({code: textArea.value, name: Inp.value.substr(14)})
+        codeRecieve.put({code: textArea.value, nameUser: Inp.value.substr(14)})
     }
 }
 </script>
