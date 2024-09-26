@@ -53,6 +53,8 @@ const codeRecieve = gun.get('codeRecieve');
 const sessionId = Math.floor(Math.random()*999999);
 
 IdWindow.innerHTML = '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀' + sessionId.toString();
+setInterval(heartbeat, 500);
+
     
 codeRecieve.on((data) => {
     if (data.action == 'all') {
@@ -108,6 +110,10 @@ function runCode() {
     }
 }
 
+function heartbeat() {
+    gun.get('heartbeat').put('heartbeat');
+}
+    
 function test() {
     alert(sessionId)
 }
