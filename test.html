@@ -50,7 +50,7 @@ var Menu = document.getElementById('Menu')
 var IdWindow = document.getElementById('sessionId');
 const gun = Gun({localStorage: false});
 const codeRecieve = gun.get('codeRecieve');
-const sessionId = Math.floor(Math.random()*999999).toString();
+var sessionId = Math.floor(Math.random()*999999).toString();
 
 IdWindow.innerHTML = '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀' + sessionId.toString();
 setInterval(heartbeat, 500);
