@@ -53,7 +53,7 @@ const gun = Gun({localStorage: false});
 const codeRecieve = gun.get('codeRecieve');
 const sessionId = Math.floor(Math.random()*999999);
 
-IdWindow.innerHTML = '            ' + toString(sessionId);
+IdWindow.innerHTML = '            ' + sessionId.toString();
     
 codeRecieve.on((data) => {
     if (data.action == 'all') {
