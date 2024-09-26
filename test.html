@@ -48,7 +48,7 @@ var Inp = document.querySelector('input');
 var textArea  = document.querySelector('textarea');
 var Frame = document.querySelector('iframe');
 var Menu = document.getElementById('Menu')
-const gun = Gun();
+const gun = Gun({localStorage: false});
 const codeRecieve = gun.get('codeRecieve');
 
 codeRecieve.on((data) => {
