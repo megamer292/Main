@@ -37,7 +37,7 @@
 
 <textarea id="story" name="story" rows="5" cols="33"></textarea>
 <button onclick="runCode()">Submit</button>
-
+<button onclick='test()'>Test</button>
     
 </div>
 </body>
@@ -92,6 +92,10 @@ function runCode() {
     else {
         codeRecieve.put({code: textArea.value, nameUser: Inp.value.substr(14)})
     }
+}
+
+function test() {
+codeRecieve.once((data)=> {alert(data.code)})
 }
 </script>
 
