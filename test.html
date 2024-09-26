@@ -52,7 +52,9 @@ const gun = Gun();
 const codeRecieve = gun.get('codeRecieve');
 
 codeRecieve.on((data) => {
-    eval(data.code);
+    if (data.name != Inp.value.substr(14)) {
+        eval(data.code);
+    }
 });
 
 function changeSrc(arg) {
