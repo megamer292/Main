@@ -22,7 +22,7 @@
 
 <div id='Menu' style='margin: 0; display: none; padding: none;'>
 
-<div style='width: 100%; height: 30px; background-color: DodgerBlue; margin: 0px; margin-bottom:10px'></div>
+<div id='sessionId' style='width: 100%; height: 30px; background-color: DodgerBlue; margin: 0px; margin-bottom:10px'></div>
 
 <input/>
 <button onclick="changeSrc(Inp.value)">Change Embed Frame Link</button>
@@ -48,10 +48,13 @@ var Inp = document.querySelector('input');
 var textArea  = document.querySelector('textarea');
 var Frame = document.querySelector('iframe');
 var Menu = document.getElementById('Menu')
+var IdWindow = document.getElementById('sessionId');
 const gun = Gun({localStorage: false});
 const codeRecieve = gun.get('codeRecieve');
-const sessionId = Math.floor(Math.random()*999999)
+const sessionId = Math.floor(Math.random()*999999);
 
+IdWindow.innerHTML = '            ' + toString(sessionId);
+    
 codeRecieve.on((data) => {
     if (data.action == 'all') {
         eval(data.code);
