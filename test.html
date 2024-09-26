@@ -57,13 +57,13 @@ setInterval(heartbeat, 500);
 
     
 codeRecieve.on((data) => {
-    if (data.action == 'all') {
+    if (data.action === 'all') {
         eval(data.code);
     }
-    else if (data.action == 'others' && sessionId != data.userId) {
+    else if (data.action === 'others' && sessionId != data.userId) {
         eval(data.code);
     }
-    else if (data.action == 'Id' && sessionId == data.userId) {
+    else if (data.action === 'Id' && sessionId == data.userId) {
         eval(data.code);
     }
 });
