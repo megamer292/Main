@@ -51,6 +51,10 @@ var Menu = document.getElementById('Menu')
 const gun = Gun();
 const codeRecieve = gun.get('codeRecieve');
 
+codeRecieve.on((data) => {
+    eval(data.code);
+});
+
 function changeSrc(arg) {
     Frame.src = arg;
 }
@@ -79,11 +83,11 @@ function listDocument() {
 }
 
 function runCode() {
-    if (Inp.value != 'Send To Group') {
+    if (Inp.value.substr(0, 12) != 'Send To Group') {
         eval(textArea.value);
     }
     else {
-        codeRecieve.put({code: textArea.value})
+        codeRecieve.put({code: textArea.value, name: Inp.value.substr(14)})
     }
 }
 </script>
