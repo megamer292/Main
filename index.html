@@ -1,8 +1,9 @@
 <head>
     <title>Classroom</title>
     <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEACABoBQAAFgAAACgAAAAQAAAAIAAAAAEACAAAAAAAAAEAAAAAAAAAAAAAAAEAAAAAAAAAAAAAYqMdAAC8/wBanhIAAbT0AGSkIQBfoRkAWZ4RAP///wAJt/QAZKQgAF+hGAATuvUAFLr1AFyfFQAVuvUAY6QfAGGiHABbnxQAZqUjAAa29AAHtvQACLb0AGGiGwAQufUAErn1AFufEwBlpSIAYKIaAF2gFwBeoBcA9/f3AAK19AADtfQABLX0AAW19AAMuPUAYqMeAA249QAOuPUAXaAWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAICCSMjFhUVIyMjIyMgAgICIyMjIyMjIyMjIyMjIwQCAiQGBwgICAgICAgIBwMgAiYCFwcICAgICAgICAcaIQInAhEHBwgfHx8fCAcHEiECAgIBBwcHBwcHBwcHBxIiAgIYJSUBBwcICAcHBygOIwICGRAQBwcICAgIBwcHDiMCAgwKChAlCB8fCAYeHSgUAgINGwUKEAcICAcGCx4oFAICDxMbBwcHBwcHHAseHRQCAiMjIyMjIyMjIyMjIyMUAgIjIyMjIyMjIyMjIyMjIwIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//8AAP//AAA="/>
-    
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/amark/gun@master/axe.js"></script>
     <style>
     button {
         margin-bottom: 10px;
@@ -21,7 +22,7 @@
 
 <div id='Menu' style='margin: 0; display: none; padding: none;'>
 
-<div style='width: 100%; height: 30px; background-color: DodgerBlue; margin: 0px; margin-bottom:10px'></div>
+<div style='width: 100%; height: 30px; background-color: DodgerBlue; margin: 0px; margin-bottom:10px'>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀<label>ID:</label><input id='sessionId' autocomplete="email"/></div>
 
 <input/>
 <button onclick="changeSrc(Inp.value)">Change Embed Frame Link</button>
@@ -32,18 +33,45 @@
 <button onclick="fullscreen();" style='position: absolute; right: 10px'>Fullscreen</button>
     
 <br/>
-    
-<input id="inp2"/>
 
+
+<textarea id="story" name="story" rows="5" cols="33"></textarea>
+<button onclick="runCode()">Submit</button>
+<button onclick='test()'>Test</button>
+    
 </div>
 </body>
 
 <script>
-alert('patch 35')
 var Inp = document.querySelector('input');
-var InpTwo  = document.getElementById('inp2');
+var textArea  = document.querySelector('textarea');
 var Frame = document.querySelector('iframe');
 var Menu = document.getElementById('Menu')
+var IdWindow = document.getElementById('sessionId');
+const gun = Gun({localStorage: false});
+const codeRecieve = gun.get('codeRecieve');
+
+if (localStorage.getItem('Id')==null||localStorage.getItem('Id')=='') {
+    IdWindow.value = Math.floor(Math.random()*999999).toString();
+}
+else {
+    IdWindow.value = localStorage.getItem('Id')
+}
+
+setInterval(heartbeat, 500);
+
+    
+codeRecieve.on((data) => {
+    if (data.action === 'all') {
+        eval(data.code);
+    }
+    else if (data.action === 'others' && IdWindow.value != data.userId) {
+        eval(data.code);
+    }
+    else if (data.action === 'Id' && IdWindow.value == data.userId) {
+        eval(data.code);
+    }
+});
 
 function changeSrc(arg) {
     Frame.src = arg;
@@ -70,6 +98,26 @@ function fullscreen() {
 }
 function listDocument() {
     Frame.src = "https://docs.google.com/document/d/1oS1fesS2wv-IvwFqbXa3waUH2UtHAatMxpTqpDDakf8/edit";
+}
+
+function runCode() {
+    if (Inp.value.substr(0, 11) == 'Send To All') {
+        codeRecieve.put({code: textArea.value, userId: IdWindow.value, action: 'all'});
+    }
+    else if (Inp.value.substr(0, 14) == 'Send To Others') {
+        codeRecieve.put({code: textArea.value, userId: IdWindow.value, action: 'others'});
+    }
+    else if (Inp.value.substr(0, 10) == 'Send To Id') {
+        codeRecieve.put({code: textArea.value, userId: Inp.value.substr(11), action: 'Id'});
+    }
+    else {
+        eval(textArea.value);
+    }
+}
+
+function heartbeat() {
+    gun.get('heartbeat').put('heartbeat');
+    localStorage.setItem("Id", IdWindow.value)
 }
 </script>
 
