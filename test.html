@@ -50,6 +50,7 @@ var Menu = document.getElementById('Menu')
 var IdWindow = document.getElementById('sessionId');
 const gun = Gun({localStorage: false});
 const codeRecieve = gun.get('codeRecieve');
+const nameRecieve =  gun.get('nameRecieve');
 var startRecieve = false
 var peopleList
 
@@ -76,6 +77,8 @@ codeRecieve.on((data) => {
         }
     }
 });
+
+nameRecieve.on((data) => {peopleList.push(data);})
 
 function changeSrc(arg) {
     Frame.src = arg;
@@ -126,7 +129,7 @@ function heartbeat() {
     
 function test() {
     peopleList = []
-    codeRecieve.put({code: `codeRecieve.put({code: 'peopleList.push('+IdWindow.value+')', userId: ${IdWindow.value}, action: 'Id'});`, userId: IdWindow.value, action: 'all'});
+    codeRecieve.put({code: 'nameRecieve.put(IdWindow.value)', userId: IdWindow.value, action: 'all'});
 }
 
 function beginRecieve() {
