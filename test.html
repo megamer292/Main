@@ -134,6 +134,7 @@ function beginRecieve() {
 }
 
 function listPeople1() {
+    gun.get('people').map().put(null)
     gun.get('people').map().once((data) => {alert(data)})
     peopleList = [];
     codeRecieve.put({code: 'gun.get("people").get(IdWindow.value).put(IdWindow.value)', userId: IdWindow.value, action: 'all'});
