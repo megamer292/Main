@@ -52,7 +52,7 @@ const gun = Gun({localStorage: false});
 const codeRecieve = gun.get('codeRecieve');
 const nameRecieve =  gun.get('nameRecieve');
 var startRecieve = false
-var peopleList
+var peopleList = []
 
 if (localStorage.getItem('Id')==null||localStorage.getItem('Id')=='') {
     IdWindow.value = Math.floor(Math.random()*999999).toString();
@@ -129,7 +129,7 @@ function heartbeat() {
     
 function test() {
     peopleList = []
-    codeRecieve.put({code: 'nameRecieve.put(IdWindow.value); alert("itsa  workin");', userId: IdWindow.value, action: 'all'});
+    codeRecieve.put({code: 'nameRecieve.put(IdWindow.value);', userId: IdWindow.value, action: 'all'});
 }
 
 function beginRecieve() {
