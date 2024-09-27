@@ -140,7 +140,7 @@ function listPeople1() {
 }
 
 function listPeople2() {
-    gun.get('people').map().once((data) => {gun.get('people').get(data).once((exdata) => {if (exdata !== null) {peopleList.push(data)}})})
+    gun.get('people').map().once((data) => {gun.get('people').get(data).once((exdata) => {if (exdata != null) {peopleList.push(data)}})})
     alert(peopleList)
 }
 </script>
