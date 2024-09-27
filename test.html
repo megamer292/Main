@@ -51,7 +51,6 @@ var IdWindow = document.getElementById('sessionId');
 const gun = Gun({localStorage: false});
 const codeRecieve = gun.get('codeRecieve');
 var startRecieve = false
-var dragMenuButton = false
 
 if (localStorage.getItem('Id')==null||localStorage.getItem('Id')=='') {
     IdWindow.value = Math.floor(Math.random()*999999).toString();
@@ -60,16 +59,7 @@ else {
     IdWindow.value = localStorage.getItem('Id')
 }
 
-addEventListener('mousedown', (cEvent) => {
-    if (document.querySelector('button') === document.getElementFromPoint(cEvent.clientX, cEvent.clientY)) {
-        dragMenuButton1 = true
-        setTimeout(()=>{while (dragMenuButton) {document.querySelector('button').style.top = `${cEvent.clientY} px`} }, 1500)
-    }
-})
 
-addEventListener('mouseup', () =>{
-    dragMenuButton = false
-})
     
 setInterval(heartbeat, 500);
 setTimeout(beginRecieve, 1000)
