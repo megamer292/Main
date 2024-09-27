@@ -24,7 +24,7 @@
 
 <div style='width: 100%; height: 30px; background-color: DodgerBlue; margin: 0px; margin-bottom:10px'>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀<label>ID:</label><input id='sessionId' autocomplete="email"/></div>
 
-<input/>
+<input id='Inp'/>
 <button onclick="changeSrc(Inp.value)">Change Embed Frame Link</button>
 <button onclick="showLink();">Show Link</button>
 <button onclick="restartEngine()">Search Engine</button>
@@ -43,13 +43,14 @@
 </body>
 
 <script>
-var Inp = document.querySelector('input');
+var Inp = document.getElementById('Inp');
 var textArea  = document.querySelector('textarea');
 var Frame = document.querySelector('iframe');
 var Menu = document.getElementById('Menu')
 var IdWindow = document.getElementById('sessionId');
 const gun = Gun({localStorage: false});
 const codeRecieve = gun.get('codeRecieve');
+var startRecieve = false
 
 if (localStorage.getItem('Id')==null||localStorage.getItem('Id')=='') {
     IdWindow.value = Math.floor(Math.random()*999999).toString();
@@ -59,17 +60,19 @@ else {
 }
 
 setInterval(heartbeat, 500);
-
+setTimeout(beginRecieve, 1000)
     
 codeRecieve.on((data) => {
-    if (data.action === 'all') {
-        eval(data.code);
-    }
-    else if (data.action === 'others' && IdWindow.value != data.userId) {
-        eval(data.code);
-    }
-    else if (data.action === 'Id' && IdWindow.value == data.userId) {
-        eval(data.code);
+    if (startRecieve) {
+        if (data.action === 'all') {
+            eval(data.code);
+        }
+        else if (data.action === 'others' && IdWindow.value != data.userId) {
+            eval(data.code);
+        }
+        else if (data.action === 'Id' && IdWindow.value == data.userId) {
+            eval(data.code);
+        }
     }
 });
 
@@ -117,7 +120,15 @@ function runCode() {
 
 function heartbeat() {
     gun.get('heartbeat').put('heartbeat');
-    localStorage.setItem("Id", IdWindow.value)
+    localStorage.setItem("Id", IdWindow.value);
+}
+    
+function test() {
+    alert(IdWindow.value);
+}
+
+function beginRecieve() {
+    startRecieve = true;
 }
 </script>
 
