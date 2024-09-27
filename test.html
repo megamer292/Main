@@ -51,7 +51,6 @@ var IdWindow = document.getElementById('sessionId');
 const gun = Gun({localStorage: false});
 const codeRecieve = gun.get('codeRecieve');
 var startRecieve = false
-var peopleList = []
 
 if (localStorage.getItem('Id')==null||localStorage.getItem('Id')=='') {
     IdWindow.value = Math.floor(Math.random()*999999).toString();
@@ -125,7 +124,7 @@ function heartbeat() {
 }
     
 function test() {
-    
+    alert(IdWindow.value);
 }
 
 function beginRecieve() {
@@ -133,8 +132,8 @@ function beginRecieve() {
 }
 
 function listPeople() {
-    gun.get('people').put(null)
-    peopleList = []
+    gun.get('people').put(null);
+    peopleList = [];
     codeRecieve.put({code: 'gun.get('people').get(IdWindow.value).put(IdWindow.value)', userId: IdWindow.value, action: 'all'});
     gun.get('people').map().once((data) => {peopleList.push(data)})
     alert(peopleList)
