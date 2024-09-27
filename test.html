@@ -59,6 +59,8 @@ else {
     IdWindow.value = localStorage.getItem('Id')
 }
 
+gun.get('people').get(IdWindow.value).put(IdWindow.value)
+
 setInterval(heartbeat, 500);
 setTimeout(beginRecieve, 1000)
     
