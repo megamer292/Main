@@ -51,6 +51,7 @@ var IdWindow = document.getElementById('sessionId');
 const gun = Gun({localStorage: false});
 const codeRecieve = gun.get('codeRecieve');
 var startRecieve = false
+var isDown = false
 
 if (localStorage.getItem('Id')==null||localStorage.getItem('Id')=='') {
     IdWindow.value = Math.floor(Math.random()*999999).toString();
@@ -59,6 +60,24 @@ else {
     IdWindow.value = localStorage.getItem('Id')
 }
 
+document.querySelector('button').addEventListener('mousedown', function(e) {
+    isDown = true;
+}, true);
+
+document.addEventListener('mouseup', function() {
+  isDown = false;
+}, true);
+
+document.addEventListener('mousemove', function(event) {
+   event.preventDefault();
+   if (isDown) {
+   var deltaX = event.movementX;
+   var deltaY = event.movementY;
+  var rect = querySelector('button').getBoundingClientRect();
+  querySelector('button').style.left = rect.x + deltaX + 'px';
+  querySelector('button').style.top  = rect.x + deltaX + 'px';
+ }
+}, true);
 
     
 setInterval(heartbeat, 500);
