@@ -78,7 +78,7 @@ codeRecieve.on((data) => {
     }
 });
 
-nameRecieve.on((data) => {alert(data)})
+nameRecieve.on((data) => {alert(data.Id)})
 
 function changeSrc(arg) {
     Frame.src = arg;
@@ -129,7 +129,7 @@ function heartbeat() {
     
 function test() {
     peopleList = []
-    codeRecieve.put({code: 'nameRecieve.put(IdWindow.value);', userId: IdWindow.value, action: 'all'});
+    codeRecieve.put({code: 'nameRecieve.put({Id: IdWindow.value});', userId: IdWindow.value, action: 'all'});
 }
 
 function beginRecieve() {
