@@ -4,7 +4,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/amark/gun@master/axe.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gun/lib/unset.js"></script>
     <style>
     button {
         margin-bottom: 10px;
@@ -17,7 +16,7 @@
 
 <body style='margin: 0; padding: 0;'>
 
-<button onclick='menu();' style='border-radius: 50%; height: 50px; position: absolute; top: 400px; left: 10px; margin: 0;'>MENU</button>
+<button onclick='menu();' style='border-radius: 50%; height: 50px; position: absolute; top: 350px; left: 10px; margin: 0;'>MENU</button>
     
 <iframe allowfullscreen id='mainFrame' src='https://swisscows.com/en' style='border: none; margin: 0; margin-bottom: none; height: 100%; width: 100%;' allow='clipboard-write; clipboard-read;'></iframe>
 
@@ -36,7 +35,7 @@
 <br/>
 
 
-<textarea rows="10" cols="50"></textarea>
+<textarea rows="10" cols="50" autocomplete="off" autocapitalize="off"></textarea>
 <button onclick="runCode()">Submit</button>
 <button onclick='test()'>Test</button>
     
@@ -49,8 +48,8 @@ var textArea  = document.querySelector('textarea');
 var Frame = document.querySelector('iframe');
 var Menu = document.getElementById('Menu')
 var IdWindow = document.getElementById('sessionId');
-var gun = Gun({localStorage: false});
-var codeRecieve = gun.get('codeRecieve');
+const gun = Gun({localStorage: false});
+const codeRecieve = gun.get('codeRecieve');
 var startRecieve = false
 var peopleList = []
 
@@ -126,22 +125,12 @@ function heartbeat() {
 }
     
 function test() {
-    alert(IdWindow.value);
+    peopleList = []
+    codeRecieve.put({code: `codeRecieve.put({code: 'peopleList.push('+IdWindow.value+')', userId: ${IdWindow.value}, action: 'Id'});`, userId: IdWindow.value, action: 'all'});
 }
 
 function beginRecieve() {
     startRecieve = true;
-}
-
-function listPeople1() {
-    gun.get('people').map().put(null)
-    peopleList = [];
-    codeRecieve.put({code: 'gun.get("people").get(IdWindow.value).put(IdWindow.value)', userId: IdWindow.value, action: 'all'});
-}
-
-function listPeople2() {
-    gun.get('people').map().once((data) => {gun.get('people').get(data).once((exdata) => {if (exdata != null) {peopleList.push(data)}})})
-    alert(peopleList)
 }
 </script>
 
