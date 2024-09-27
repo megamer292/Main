@@ -133,10 +133,13 @@ function beginRecieve() {
     startRecieve = true;
 }
 
-function listPeople() {
+function listPeople1() {
     gun.get('people').map().once((data) => {gun.get(people).unset(data)})
     peopleList = [];
     codeRecieve.put({code: 'gun.get("people").get(IdWindow.value).put(IdWindow.value)', userId: IdWindow.value, action: 'all'});
+}
+
+function listPeople2() {
     gun.get('people').map().once((data) => {peopleList.push(data)})
 }
 </script>
