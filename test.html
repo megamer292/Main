@@ -78,7 +78,7 @@ codeRecieve.on((data) => {
     }
 });
 
-nameRecieve.on((data) => {alert(data.Id)})
+nameRecieve.on((data) => {peopleList.push(data.id)})
 
 function changeSrc(arg) {
     Frame.src = arg;
