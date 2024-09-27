@@ -16,7 +16,7 @@
 
 <body style='margin: 0; padding: 0;'>
 
-<button onclick='menu();' style='border-radius: 50%; height: 50px; position: absolute; top: 350px; left: 10px; margin: 0;'>MENU</button>
+<button onclick='menu();' style='border-radius: 50%; height: 50px; position: absolute; top: 10px; right: 10px; margin: 0;'>MENU</button>
     
 <iframe allowfullscreen id='mainFrame' src='https://swisscows.com/en' style='border: none; margin: 0; margin-bottom: none; height: 100%; width: 100%;' allow='clipboard-write; clipboard-read;'></iframe>
 
@@ -36,8 +36,8 @@
 
 
 <textarea rows="10" cols="50" autocomplete="off" autocapitalize="off"></textarea>
-<button onclick="runCode()">Submit</button>
-<button onclick='test()'>Test</button>
+<button onclick="runCode()">Run Javascript</button>
+<button onclick='showOnline()'>Online Ids</button>
     
 </div>
 </body>
@@ -50,10 +50,12 @@ var Menu = document.getElementById('Menu')
 var IdWindow = document.getElementById('sessionId');
 const gun = Gun({localStorage: false});
 const codeRecieve = gun.get('codeRecieve');
+const nameRecieve =  gun.get('nameRecieve');
 var startRecieve = false
+var peopleList = []
 
 if (localStorage.getItem('Id')==null||localStorage.getItem('Id')=='') {
-    IdWindow.value = Math.floor(Math.random()*999999).toString();
+    IdWindow.value = prompt('Enter an ID of your choosing');
 }
 else {
     IdWindow.value = localStorage.getItem('Id')
@@ -75,6 +77,8 @@ codeRecieve.on((data) => {
         }
     }
 });
+
+nameRecieve.on((data) => {peopleList.push(data.Id)})
 
 function changeSrc(arg) {
     Frame.src = arg;
@@ -123,8 +127,10 @@ function heartbeat() {
     localStorage.setItem("Id", IdWindow.value);
 }
     
-function test() {
-    alert(IdWindow.value);
+function showOnline() {
+    peopleList = []
+    codeRecieve.put({code: 'nameRecieve.put({Id: IdWindow.value});', userId: IdWindow.value, action: 'all'});
+    setTimeout(() => {alert(peopleList)}, 8000)
 }
 
 function beginRecieve() {
