@@ -127,7 +127,7 @@ function heartbeat() {
     
 function showOnline() {
     nameRecieve.put(null)
-    codeRecieve.put({code: 'nameRecieve.put({}[IdWindow.value] = IdWindow.value);', userId: IdWindow.value, action: 'all'});
+    codeRecieve.put({code: 'nameRecieve.put({[IdWindow.value]: IdWindow.value});', userId: IdWindow.value, action: 'all'});
     setTimeout(() => {nameRecieve.once((data) => {alert(data.keys())})}, 8000)
 }
 
