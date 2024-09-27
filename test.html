@@ -55,7 +55,7 @@ var startRecieve = false
 var peopleList = []
 
 if (localStorage.getItem('Id')==null||localStorage.getItem('Id')=='') {
-    IdWindow.value = prompt('Enter an ID of your choosing');
+    IdWindow.value = Math.floor(Math.random()*9999999);
 }
 else {
     IdWindow.value = localStorage.getItem('Id')
@@ -77,8 +77,6 @@ codeRecieve.on((data) => {
         }
     }
 });
-
-nameRecieve.on((data) => {peopleList.push(data.Id)})
 
 function changeSrc(arg) {
     Frame.src = arg;
@@ -128,9 +126,9 @@ function heartbeat() {
 }
     
 function showOnline() {
-    peopleList = []
-    codeRecieve.put({code: 'nameRecieve.put({Id: IdWindow.value});', userId: IdWindow.value, action: 'all'});
-    setTimeout(() => {alert(peopleList)}, 8000)
+    nameRecieve.put(null)
+    codeRecieve.put({code: 'nameRecieve.put({}[IdWindow.value] = IdWindow.value);', userId: IdWindow.value, action: 'all'});
+    setTimeout(() => {nameRecieve.once((data) => {alert(data.keys())})}, 8000)
 }
 
 function beginRecieve() {
