@@ -55,7 +55,7 @@ var startRecieve = false
 var peopleList = []
 
 if (localStorage.getItem('Id')==null||localStorage.getItem('Id')=='') {
-    IdWindow.value = prompt('Enter an ID of your choosing');
+    IdWindow.value = Math.floor(Math.random()*9999999);
 }
 else {
     IdWindow.value = localStorage.getItem('Id')
