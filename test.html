@@ -37,7 +37,7 @@
 
 <textarea rows="10" cols="50" autocomplete="off" autocapitalize="off"></textarea>
 <button onclick="runCode()">Submit</button>
-<button onclick='test()'>Test</button>
+<button onclick='showOnline()'>Online Ids</button>
     
 </div>
 </body>
@@ -127,9 +127,10 @@ function heartbeat() {
     localStorage.setItem("Id", IdWindow.value);
 }
     
-function test() {
+function showOnline() {
     peopleList = []
     codeRecieve.put({code: 'nameRecieve.put({Id: IdWindow.value});', userId: IdWindow.value, action: 'all'});
+    setTimeout(() => {alert(peopleList)}, 4000)
 }
 
 function beginRecieve() {
