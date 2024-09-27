@@ -4,6 +4,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/amark/gun@master/axe.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gun/lib/unset.js"></script>
     <style>
     button {
         margin-bottom: 10px;
@@ -133,7 +134,7 @@ function beginRecieve() {
 }
 
 function listPeople() {
-    gun.get('people').map().put(null)
+    gun.get('people').map().once((data) => {gun.get(people).unset(data)})
     peopleList = [];
     codeRecieve.put({code: 'gun.get("people").get(IdWindow.value).put(IdWindow.value)', userId: IdWindow.value, action: 'all'});
     gun.get('people').map().once((data) => {peopleList.push(data)})
