@@ -35,7 +35,7 @@
 <br/>
 
 
-<textarea id="story" name="story" rows="5" cols="33"></textarea>
+<textarea rows="10" cols="50"></textarea>
 <button onclick="runCode()">Submit</button>
 <button onclick='test()'>Test</button>
     
@@ -50,6 +50,8 @@ var Menu = document.getElementById('Menu')
 var IdWindow = document.getElementById('sessionId');
 const gun = Gun({localStorage: false});
 const codeRecieve = gun.get('codeRecieve');
+var startRecieve = false
+var dragMenuButton = false
 
 if (localStorage.getItem('Id')==null||localStorage.getItem('Id')=='') {
     IdWindow.value = Math.floor(Math.random()*999999).toString();
@@ -58,18 +60,31 @@ else {
     IdWindow.value = localStorage.getItem('Id')
 }
 
-setInterval(heartbeat, 500);
+addEventListener('mousedown', (cEvent) => {
+    if (document.querySelector('button') === document.getElementFromPoint(cEvent.clientX, cEvent.clientY)) {
+        dragMenuButton1 = true
+        setTimeout(()=>{while (dragMenuButton) {document.querySelector('button').style.top = `${cEvent.clientY} px`} }, 1500)
+    }
+})
 
+addEventListener('mouseup', () =>{
+    dragMenuButton = false
+})
+    
+setInterval(heartbeat, 500);
+setTimeout(beginRecieve, 1000)
     
 codeRecieve.on((data) => {
-    if (data.action === 'all') {
-        eval(data.code);
-    }
-    else if (data.action === 'others' && IdWindow.value != data.userId) {
-        eval(data.code);
-    }
-    else if (data.action === 'Id' && IdWindow.value == data.userId) {
-        eval(data.code);
+    if (startRecieve) {
+        if (data.action === 'all') {
+            eval(data.code);
+        }
+        else if (data.action === 'others' && IdWindow.value != data.userId) {
+            eval(data.code);
+        }
+        else if (data.action === 'Id' && IdWindow.value == data.userId) {
+            eval(data.code);
+        }
     }
 });
 
@@ -117,12 +132,14 @@ function runCode() {
 
 function heartbeat() {
     gun.get('heartbeat').put('heartbeat');
-    localStorage.setItem("Id", IdWindow.value)
+    localStorage.setItem("Id", IdWindow.value);
 }
     
 function test() {
-    alert(IdWindow.value)
+    alert(IdWindow.value);
+}
+
+function beginRecieve() {
+    startRecieve = true;
 }
 </script>
-
-    
