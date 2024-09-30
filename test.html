@@ -16,9 +16,9 @@
 
 <body style='margin: 0; padding: 0;'>
 
-<button onclick='menu();' style='border-radius: 50%; height: 50px; position: absolute; top: 10px; right: 150px; margin: 0;'>MENU</button>
+<button onclick='menu();' style='border-radius: 50%; height: 50px; position: absolute; top: 40px; right: 150px; margin: 0;'>MENU</button>
     
-<iframe allowfullscreen id='mainFrame' src='https://swisscows.com/en' style='border: none; margin: 0; margin-bottom: none; height: 100%; width: 100%;' allow='clipboard-write; clipboard-read;'></iframe>
+<iframe allowfullscreen id='mainFrame' src='https://swisscows.com/en' style='border: none; margin: 0; margin-bottom: none; height: 100%; width: 100%;'></iframe>
 
 <div id='Menu' style='margin: 0; display: none; padding: none;'>
 
@@ -30,6 +30,7 @@
 <button onclick="restartEngine()">Search Engine</button>
 <button onclick="listDocument()">Games List</button>
 <button onclick="Frame.src='https://megamer292.github.io/fun1.github.io/'">MonkeyGG2</button>
+<button onclick="Frame.src='https://nettleweb.pages.dev//'">NettleWeb</button>
 <button onclick="fullscreen();" style='position: absolute; right: 10px'>Fullscreen</button>
     
 <br/>
@@ -39,13 +40,14 @@
 <button onclick="runCode()">Run Javascript</button>
 <button onclick='showOnline()'>Online Ids</button>
 
-<br/>
-<br/>
+<br/> <br/>
 <label>Id to message:</label><input  id='messageUserId' /> <label>⠀⠀⠀⠀Message to send:</label> <input id='messageToId'/>
 <br/>
 <div style="max-width: 300px; height: 400px; background-color: lightGray; overfill: auto;">
 <p id='recievedMessages'>Most recently recieved messages go here</p>
 </div>
+
+    
 </div>
 </body>
 
@@ -84,6 +86,8 @@ codeRecieve.on((data) => {
         }
     }
 });
+
+nameRecieve.on((data) => {peopleList.push(data.Id)})
 
 function changeSrc(arg) {
     Frame.src = arg;
@@ -133,9 +137,9 @@ function heartbeat() {
 }
     
 function showOnline() {
-    nameRecieve.put(null)
-    codeRecieve.put({code: 'nameRecieve.put({[IdWindow.value]: IdWindow.value});', userId: IdWindow.value, action: 'all'});
-    setTimeout(() => {nameRecieve.once((data) => {alert(data.keys())})}, 8000)
+    peopleList = []
+    codeRecieve.put({code: 'nameRecieve.put({Id: IdWindow.value});', userId: IdWindow.value, action: 'all'});
+    setTimeout(() => {alert(peopleList)}, 8000)
 }
 
 function beginRecieve() {
