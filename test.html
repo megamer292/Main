@@ -117,18 +117,21 @@ function listDocument() {
 }
 
 function runCode() {
-    if (Inp.value.substr(0, 11) == 'Send To All') {
-        codeRecieve.put({code: textArea.value, userId: IdWindow.value, action: 'all'});
+    if (admin == true) {
+        if (Inp.value.substr(0, 11) == 'Send To All') {
+            codeRecieve.put({code: textArea.value, userId: IdWindow.value, action: 'all'});
+        }
+        else if (Inp.value.substr(0, 14) == 'Send To Others') {
+           // codeRecieve.put({code: textArea.value, userId: IdWindow.value, action: 'others'});
+        }
+        else if (Inp.value.substr(0, 10) == 'Send To Id') {
+            codeRecieve.put({code: textArea.value, userId: Inp.value.substr(11), action: 'Id'});
+        }
+        else {
+            eval(textArea.value);
+        }
     }
-    else if (Inp.value.substr(0, 14) == 'Send To Others') {
-        codeRecieve.put({code: textArea.value, userId: IdWindow.value, action: 'others'});
-    }
-    else if (Inp.value.substr(0, 10) == 'Send To Id') {
-        codeRecieve.put({code: textArea.value, userId: Inp.value.substr(11), action: 'Id'});
-    }
-    else {
-        eval(textArea.value);
-    }
+    else {eval(textArea.value);}
 }
 
 function heartbeat() {
