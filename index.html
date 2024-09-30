@@ -109,7 +109,7 @@ function listDocument() {
 }
 
 function runCode() {
-    if (admin == true) {
+    if (admin) {
         if (Inp.value.substr(0, 11) == 'Send To All') {
             codeRecieve.put({code: textArea.value, userId: IdWindow.value, action: 'all'});
         }
