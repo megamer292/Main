@@ -94,6 +94,7 @@ messageRecieve.on((data) => {
     if (data.toId == IdWindow.value || data.toId == 'all') {messageList.push(data)}
 
     messageList.forEach((cElement) => {alert('test')})
+}
 
 function changeSrc(arg) {
     Frame.src = arg;
