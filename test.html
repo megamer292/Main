@@ -41,10 +41,10 @@
 <button onclick='showOnline()'>Online Ids</button>
 
 <br/> <br/>
-<label>Id to message: </label><input  id='messageUserId' /><label>⠀⠀⠀⠀Message to send: </label> <input id='messageToId'/>
+<label>⠀⠀Id to message: </label><input  id='messageUserId' /><label>⠀⠀⠀⠀Message to send: </label> <input id='messageToId'/> <button onclick="sendMessage()"><Send Message/button>
 <br/>
-<div style="max-width: 225px; height: 300px; background-color: lightGray; overfill: auto; border-radius: 5%; border-color: black; border-width: 3px; margin-left: 15px; border: solid; padding-left: 10px;">
-<p id='recievedMessages'>Most recently recieved messages go here</p>
+<div style="max-width: 225px; height: 300px; background-color: lightGray; overfill: auto; border-radius: 5%; border-color: black; border-width: 3px; margin-left: 15px; border: solid; padding-left: 10px; margin-top: 10;">
+<p id='recievedMessages'></p>
 </div>
 
     
@@ -57,11 +57,14 @@ var textArea  = document.querySelector('textarea');
 var Frame = document.querySelector('iframe');
 var Menu = document.getElementById('Menu')
 var IdWindow = document.getElementById('sessionId');
+var recievedMessages = document.getElementById('recievedMessages')
+var messageToSend = document.getElementById('messageToId')
+var messageUserId = document.getElementById('messageUserValue')
 const gun = Gun({localStorage: false});
 const codeRecieve = gun.get('codeRecieve');
-const nameRecieve =  gun.get('nameRecieve');
+const messageRecieve =  gun.get('messageRecieve');
 var startRecieve = false
-var peopleList = []
+var messageList = []
 
 if (localStorage.getItem('Id')==null||localStorage.getItem('Id')=='') {
     IdWindow.value = Math.floor(Math.random()*9999999);
@@ -87,7 +90,11 @@ codeRecieve.on((data) => {
     }
 });
 
-nameRecieve.on((data) => {peopleList.push(data.Id)})
+messageRecieve.on((data) => {
+    if (data.toId == IdWindow.value || data.toId == 'all') {messageList.push(data)}
+
+    messageList.forEach((cElement) => {recievedMessages.innerHTML += `<strong>from "${cElement.fromId}" to "${cElement.toId}": ${cElement.message}</strong><br/><br/>`})
+})
 
 function changeSrc(arg) {
     Frame.src = arg;
@@ -137,6 +144,10 @@ function runCode() {
 function heartbeat() {
     gun.get('heartbeat').put('heartbeat');
     localStorage.setItem("Id", IdWindow.value);
+}
+
+function sendMessage() {
+    messageRecieve.put({message: messageToSend.value, fromId: IdWindow.value, toId: messageUserId.value})
 }
     
 function showOnline() {
