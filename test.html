@@ -93,7 +93,7 @@ codeRecieve.on((data) => {
 messageRecieve.on((data) => {
     if (data.toId == IdWindow.value || data.toId == 'all') {messageList.push(data)}
 
-    messageList.forEach((cElement) => {alert(`from "${cElement.fromId}" to "${cElement.toId}": ${cElement.message}\n \n`))
+    messageList.forEach((cElement) => {recievedMessages.innerHTML += `<strong>from "${cElement.fromId}" to "${cElement.toId}": ${cElement.message}</strong><br/><br/>`})
 })
 
 function changeSrc(arg) {
