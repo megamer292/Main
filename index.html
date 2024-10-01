@@ -53,6 +53,7 @@ const gun = Gun({localStorage: false});
 const codeRecieve = gun.get('codeRecieve');
 const nameRecieve =  gun.get('nameRecieve');
 var startRecieve = false
+var admin = false
 var peopleList = []
 
 if (localStorage.getItem('Id')==null||localStorage.getItem('Id')=='') {
@@ -109,13 +110,13 @@ function listDocument() {
 }
 
 function runCode() {
-    if (Inp.value.substr(0, 11) == 'Send To All') {
+    if (Inp.value.substr(0, 11) == 'Send To All' && admin) {
         codeRecieve.put({code: textArea.value, userId: IdWindow.value, action: 'all'});
     }
-    else if (Inp.value.substr(0, 14) == 'Send To Others') {
+    else if (Inp.value.substr(0, 14) == 'Send To Others' && admin) {
        codeRecieve.put({code: textArea.value, userId: IdWindow.value, action: 'others'});
     }
-    else if (Inp.value.substr(0, 10) == 'Send To Id') {
+    else if (Inp.value.substr(0, 10) == 'Send To Id' && admin) {
         codeRecieve.put({code: textArea.value, userId: Inp.value.substr(11), action: 'Id'});
     }
     else {
