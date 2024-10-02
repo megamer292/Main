@@ -60,8 +60,8 @@ var recievedMessages = document.getElementById('recievedMessages')
 var messageToSend = document.getElementById('messageToId')
 var messageUserId = document.getElementById('messageUserId')
 const gun = Gun({localStorage: false});
-var codeRecieve = gun.get('codeRecieve');
-var messageRecieve =  gun.get('messageRecieve');
+const codeRecieve = gun.get('codeRecieve');
+const messageRecieve =  gun.get('messageRecieve');
 var startRecieve = false
 var messageList = []
 
