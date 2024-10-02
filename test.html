@@ -152,9 +152,7 @@ function sendMessage() {
 }
     
 function showOnline() {
-    peopleList = []
     codeRecieve.put({code: `messageRecieve.put({fromId: 'online', toId: ${IdWindow.value}, message: IdWindow.value});`, userId: IdWindow.value, action: 'all'});
-    setTimeout(() => {alert(peopleList)}, 8000)
 }
 
 function beginRecieve() {
