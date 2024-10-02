@@ -91,9 +91,11 @@ codeRecieve.on((data) => {
 });
 
 messageRecieve.on((data) => {
-    alert('wow')
-
-    messageList.forEach((cElement) => {alert(`from "${cElement.fromId}" to "${cElement.toId}": ${cElement.message}`)})
+    if (data.toId == 'all' || data.toId == IdWindow.value) {messageList.push(data)}
+    let tempString = ''
+    messageList.forEach((cElement) => {
+        tempString += ''
+    })
 })
 
 function changeSrc(arg) {
