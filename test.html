@@ -61,8 +61,8 @@ var recievedMessages = document.getElementById('recievedMessages')
 var messageToSend = document.getElementById('messageToId')
 var messageUserId = document.getElementById('messageUserValue')
 const gun = Gun({localStorage: false});
-const codeRecieve = gun.get('codeRecieve');
-const messageRecieve =  gun.get('messageRecieve');
+var codeRecieve = gun.get('codeRecieve');
+var messageRecieve =  gun.get('messageRecieve');
 var startRecieve = false
 var messageList = []
 
@@ -145,7 +145,7 @@ function heartbeat() {
 }
 
 function sendMessage() {
-    messageRecieve.put({message: messageToSend.value, fromId: IdWindow.value, toId: messageUserId.value})
+    gun.get('messageRecieve').put({message: messageToSend.value, fromId: IdWindow.value, toId: messageUserId.value})
 }
     
 function showOnline() {
