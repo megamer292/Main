@@ -93,9 +93,9 @@ messageRecieve.on((data) => {
     if (data.toId == 'all' || data.toId == IdWindow.value) {messageList.push(data)}
     let tempString = ''
     messageList.forEach((cElement) => {
-        tempString += `from <strong>${cElement.fromId}</strong> to <strong>${cElement.toId}:</strong> ${cElement.message} <br/>`
+        tempString += "from <strong>"+cElement.fromId+"</strong> to <strong>"+cElement.toId+":</strong> "+cElement.message+" <br/>"
     })
-    tempString = `<p id='recievedMessages'>${tempString}</p>`
+    tempString = "<p id='recievedMessages'>"+tempString+"</p>"
     recievedMessages.innerHTML = tempString
 })
 
