@@ -91,7 +91,7 @@ codeRecieve.on((data) => {
 });
 
 messageRecieve.on((data) => {
-    if (data.toId == IdWindow.value || data.toId == 'all') {alert('wow')}
+    alert('wow')
 
     messageList.forEach((cElement) => {alert(`from "${cElement.fromId}" to "${cElement.toId}": ${cElement.message}`)})
 })
