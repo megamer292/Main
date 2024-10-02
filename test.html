@@ -152,7 +152,7 @@ function sendMessage() {
 }
     
 function showOnline() {
-    codeRecieve.put({code: "messageRecieve.put({fromId: 'online', toId: "+IdWindow.value+", message: IdWindow.value});", userId: IdWindow.value, action: 'all'});
+    codeRecieve.put({code: "messageRecieve.put({fromId: 'online', toId: '"+IdWindow.value+"', message: IdWindow.value});", userId: IdWindow.value, action: 'others'});
 }
 
 function beginRecieve() {
