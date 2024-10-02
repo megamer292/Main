@@ -93,7 +93,7 @@ codeRecieve.on((data) => {
 messageRecieve.on((data) => {
     if (data.toId == IdWindow.value || data.toId == 'all') {messageList.push(data)}
 
-    messageList.forEach((cElement) => {alert(`from "${cElement.fromId}" to "${cElement.toId}": ${cElement.message} \n \n`)})
+    messageList.forEach((cElement) => {alert(`from "${cElement.fromId}" to "${cElement.toId}": ${cElement.message}`)})
 })
 
 function changeSrc(arg) {
@@ -124,22 +124,20 @@ function listDocument() {
 }
 
 function runCode() {
-    if (admin == true) {
-        if (Inp.value.substr(0, 11) == 'Send To All') {
-            codeRecieve.put({code: textArea.value, userId: IdWindow.value, action: 'all'});
-        }
-        else if (Inp.value.substr(0, 14) == 'Send To Others') {
-           // codeRecieve.put({code: textArea.value, userId: IdWindow.value, action: 'others'});
-        }
-        else if (Inp.value.substr(0, 10) == 'Send To Id') {
-            codeRecieve.put({code: textArea.value, userId: Inp.value.substr(11), action: 'Id'});
-        }
-        else {
-            eval(textArea.value);
-        }
+    if (Inp.value.substr(0, 11) == 'Send To All' && admin) {
+        codeRecieve.put({code: textArea.value, userId: IdWindow.value, action: 'all'});
     }
-    else {eval(textArea.value);}
+    else if (Inp.value.substr(0, 14) == 'Send To Others' && admin) {
+       codeRecieve.put({code: textArea.value, userId: IdWindow.value, action: 'others'});
+    }
+    else if (Inp.value.substr(0, 10) == 'Send To Id' && admin) {
+        codeRecieve.put({code: textArea.value, userId: Inp.value.substr(11), action: 'Id'});
+    }
+    else {
+        eval(textArea.value);
+    }
 }
+
 
 function heartbeat() {
     gun.get('heartbeat').put('heartbeat');
