@@ -90,10 +90,10 @@ codeRecieve.on((data) => {
 });
 
 messageRecieve.on((data) => {
-    if (data.toId == 'all' || data.toId == IdWindow.value) {messageList.push(data)}
+    if (data.toId == 'all' || data.toId == IdWindow.value) {messageList.push({message:  data.message.toString(), toId: data.toId.toString(), fromId: data.fromId.toString()})}
     let tempString = ''
     messageList.forEach((cElement) => {
-        tempString += "from <strong>"+cElement.fromId.toString()+"</strong> to <strong>"+cElement.toId.toString()+":</strong> "+cElement.message.toString()+" <br/>"
+        tempString += "from <strong>"+cElement.fromId+"</strong> to <strong>"+cElement.toId+":</strong> "+cElement.message+" <br/>"
     })
     tempString = "<p id='recievedMessages'>"+tempString+"</p>"
     recievedMessages.innerHTML = tempString
