@@ -1,7 +1,6 @@
 <head>
     <title>Classroom</title>
     <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEACABoBQAAFgAAACgAAAAQAAAAIAAAAAEACAAAAAAAAAEAAAAAAAAAAAAAAAEAAAAAAAAAAAAAYqMdAAC8/wBanhIAAbT0AGSkIQBfoRkAWZ4RAP///wAJt/QAZKQgAF+hGAATuvUAFLr1AFyfFQAVuvUAY6QfAGGiHABbnxQAZqUjAAa29AAHtvQACLb0AGGiGwAQufUAErn1AFufEwBlpSIAYKIaAF2gFwBeoBcA9/f3AAK19AADtfQABLX0AAW19AAMuPUAYqMeAA249QAOuPUAXaAWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAICCSMjFhUVIyMjIyMgAgICIyMjIyMjIyMjIyMjIwQCAiQGBwgICAgICAgIBwMgAiYCFwcICAgICAgICAcaIQInAhEHBwgfHx8fCAcHEiECAgIBBwcHBwcHBwcHBxIiAgIYJSUBBwcICAcHBygOIwICGRAQBwcICAgIBwcHDiMCAgwKChAlCB8fCAYeHSgUAgINGwUKEAcICAcGCx4oFAICDxMbBwcHBwcHHAseHRQCAiMjIyMjIyMjIyMjIyMUAgIjIyMjIyMjIyMjIyMjIwIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//8AAP//AAA="/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/amark/gun@master/axe.js"></script>
     <style>
@@ -39,6 +38,14 @@
 <textarea rows="10" cols="50" autocomplete="off" autocapitalize="off"></textarea>
 <button onclick="runCode()">Run Javascript</button>
 <button onclick='showOnline()'>Online Ids</button>
+
+<br/> <br/>
+<label>⠀⠀Id to message: </label><input  id='messageUserId' /><label>⠀⠀⠀⠀Message to send: </label> <input id='messageToId'/> <button onclick='sendMessage()'>Send Message</button> <button onclick='clearMessages()'>Clear Messages</button>
+<br/>
+
+<p id='recievedMessages' style="max-width: 225px; max-height: 300px; background-color: lightGray; overflow: auto; border-radius: 5%; border-color: black; border-width: 3px; margin-left: 15px; border: solid; padding-left: 10px; margin-top: 10;"></p>
+
+
     
 </div>
 </body>
@@ -49,12 +56,14 @@ var textArea  = document.querySelector('textarea');
 var Frame = document.querySelector('iframe');
 var Menu = document.getElementById('Menu')
 var IdWindow = document.getElementById('sessionId');
+var recievedMessages = document.getElementById('recievedMessages')
+var messageToSend = document.getElementById('messageToId')
+var messageUserId = document.getElementById('messageUserId')
 const gun = Gun({localStorage: false});
 const codeRecieve = gun.get('codeRecieve');
-const nameRecieve =  gun.get('nameRecieve');
+const messageRecieve =  gun.get('messageRecieve');
 var startRecieve = false
-var admin = false
-var peopleList = []
+var messageList = []
 
 if (localStorage.getItem('Id')==null||localStorage.getItem('Id')=='') {
     IdWindow.value = Math.floor(Math.random()*9999999);
@@ -80,7 +89,15 @@ codeRecieve.on((data) => {
     }
 });
 
-nameRecieve.on((data) => {peopleList.push(data.Id)})
+messageRecieve.on((data) => {
+    if (data.toId == 'all' || data.toId == IdWindow.value || data.fromId == IdWindow.value) {messageList.push({message:  data.message.toString(), toId: data.toId.toString(), fromId: data.fromId.toString()})}
+    let tempString = ''
+    messageList.forEach((cElement) => {
+        tempString += "from <strong>"+cElement.fromId+"</strong> to <strong>"+cElement.toId+":</strong> "+cElement.message+" <br/> <br/>"
+    })
+    tempString = "<p id='recievedMessages'>"+tempString+"</p>"
+    recievedMessages.innerHTML = tempString
+})
 
 function changeSrc(arg) {
     Frame.src = arg;
@@ -124,19 +141,26 @@ function runCode() {
     }
 }
 
+
 function heartbeat() {
     gun.get('heartbeat').put('heartbeat');
     localStorage.setItem("Id", IdWindow.value);
 }
+
+function sendMessage() {
+    messageRecieve.put({message: messageToSend.value, fromId: IdWindow.value, toId: messageUserId.value})
+}
     
 function showOnline() {
-    peopleList = []
-    codeRecieve.put({code: 'nameRecieve.put({Id: IdWindow.value});', userId: IdWindow.value, action: 'all'});
-    setTimeout(() => {alert(peopleList)}, 8000)
+    codeRecieve.put({code: "messageRecieve.put({fromId: 'online', toId: '"+IdWindow.value+"', message: IdWindow.value});", userId: IdWindow.value, action: 'others'});
 }
 
 function beginRecieve() {
     startRecieve = true;
+}
+function clearMessages() {
+    messageList = []
+    recievedMessages.innerHTML = "<p id='recievedMessages'</p>"
 }
 </script>
 
