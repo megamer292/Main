@@ -97,6 +97,7 @@ messageRecieve.on((data) => {
     })
     tempString = "<p id='recievedMessages'>"+tempString+"</p>"
     recievedMessages.innerHTML = tempString
+    recievedMessages.scrollTop = recievedMessages.scrollHeight
 })
 
 function changeSrc(arg) {
