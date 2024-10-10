@@ -161,7 +161,7 @@ function beginRecieve() {
     clearMessages()
 }
 function testId(theId) {
-codeRecieve.put({code: "let orgColor = document.querySelector('button').style.backgroundColor;document.querySelector('button').style.backgroundColor = 'blue'; setTimeout(() => {document.querySelector('button').style.backgroundColor = orgColor}, 2000);", userId: theId.toString(), action: 'Id'});
+    codeRecieve.put({code: "let orgColor = document.querySelector('button').style.backgroundColor;document.querySelector('button').style.backgroundColor = 'blue'; setTimeout(() => {document.querySelector('button').style.backgroundColor = orgColor}, 2000);", userId: theId.toString(), action: 'Id'});
 }
 function clearMessages() {
     messageList = []
