@@ -24,7 +24,8 @@
 <div style='width: 100%; height: 30px; background-color: DodgerBlue; margin: 0px; margin-bottom:10px'>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀<label>ID:</label><input id='sessionId' autocomplete="email"/></div>
 
 <input id='Inp'/>
-<button onclick="changeSrc(Inp.value)">Change Embed Frame Link</button>
+<button onclick="changeSrc(Inp.value)">Change Normal Iframe Link</button>
+<button onclick="changeUnblSource()">Change Basic Unblocked Iframe Link</button>
 <button onclick="restartEngine()">Search Engine</button>
 <button onclick="listDocument()">Games List</button>
 <button onclick="Frame.src='https://megamer292.github.io/fun1.github.io/'">MonkeyGG2</button>
@@ -102,6 +103,11 @@ messageRecieve.on((data) => {
 function changeSrc(arg) {
     Frame.src = arg;
 }
+
+function changeUnblSrc() {
+    Frame.src = 'data:text/html;base64,'+btoa(`<link rel="stylesheet" type="text/css" href="data:text/css;base64,Ym9keSwgZW1iZWQsIGlmcmFtZSB7Cglwb3NpdGlvbjogYWJzb2x1dGU7CglkaXNwbGF5OiBibG9jazsKCXdpZHRoOiAxMDAlOwoJaGVpZ2h0OiAxMDAlOwoJbWFyZ2luOiAwcHg7CglwYWRkaW5nOiAwcHg7Cglib3JkZXI6IG5vbmU7CglvdmVyZmxvdzogaGlkZGVuOwp9Cg==" /> <embed src="${Inp.value}" />`);
+}
+    
 function showLink() {
     alert(Frame.src);
 }
