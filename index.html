@@ -103,7 +103,9 @@ messageRecieve.on((data) => {
 })
 
 function changeSrc(arg) {
-    Frame.src = arg;
+    let tempTarget = arg;
+    if (tempTarget.substr(0, 8) != 'https://'&&tempTarget.substr(0, 7) != 'http://') {tempTarget = 'https://' + tempTarget}
+    Frame.src = tempTarget;
 }
 
 function changeUnblSrc() {
