@@ -67,6 +67,7 @@ const gun = Gun({localStorage: false});
 const codeRecieve = gun.get('codeRecieve');
 const messageRecieve =  gun.get('messageRecieve');
 var startRecieve = false
+var messageIdList  = []
 var messageList = []
 
 if (localStorage.getItem('Id')==null||localStorage.getItem('Id')=='') {
@@ -96,8 +97,9 @@ codeRecieve.on((data) => {
 });
 
 messageRecieve.on((data) => {
-    if (data.toId == 'all' || data.toId == IdWindow.value || data.fromId == IdWindow.value) {messageList.push({message:  data.message.toString(), toId: data.toId.toString(), fromId: data.fromId.toString()});
+    if ((data.toId == 'all' || data.toId == IdWindow.value || data.fromId == IdWindow.value)&& !checkForMessage(data.messageId)) {messageList.push({message:  data.message.toString(), toId: data.toId.toString(), fromId: data.fromId.toString()});
         if (Menu.style.display=='none') {Notification.style.display='block'}
+        messageIdList.push(data.messageId)
     }
     let tempString = ''
     messageList.forEach((cElement) => {
@@ -158,7 +160,7 @@ function runCode() {
 
 
 function heartbeat() {
-    if (IdWindow.value == ''||IdWindow.value == ' ') {IdWindow.value = '<blank>'}
+    if (IdWindow.value == ''||IdWindow.value == ' ') {IdWindow.value = 'blank'}
     localStorage.setItem("Id", IdWindow.value);
 
     if (Menu.style.display != 'none') {
@@ -168,7 +170,7 @@ function heartbeat() {
 
 function sendMessage() {
     if (messageToSend.value) {
-    messageRecieve.put({message: messageToSend.value, fromId: IdWindow.value, toId: messageUserId.value});
+    messageRecieve.put({message: messageToSend.value, fromId: IdWindow.value, toId: messageUserId.value, messageId: Math.random()});
     messageToSend.value = '';
     }
 }
@@ -180,7 +182,7 @@ function checkEnterMessage() {
 }
     
 function showOnline() {
-    codeRecieve.put({code: "messageRecieve.put({fromId: 'online', toId: '"+IdWindow.value+"', message: IdWindow.value});", userId: IdWindow.value, action: 'others'});
+    codeRecieve.put({code: "messageRecieve.put({fromId: 'online', toId: '"+IdWindow.value+"', message: IdWindow.value, messageId: Math.random()});", userId: IdWindow.value, action: 'others'});
 }
 
 function beginRecieve() {
@@ -196,6 +198,16 @@ function clearMessages() {
 }
 function fart() {
     new Audio('fart.mp3').play();
+}
+
+function checkForMessage(messageId) {
+    let booleanBuffer = false;
+    for (i=0;i<messageIdList.length;i++) {
+        if (messageId==messageIdList[i]) {
+            booleanBuffer = true;
+        }
+    }
+    return booleanBuffer;
 }
 </script>
 
