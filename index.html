@@ -78,6 +78,8 @@ else {
 
 setInterval(heartbeat, 250);
 setTimeout(beginRecieve, 1000)
+messageUserId.value = 'all'
+
     
 codeRecieve.on((data) => {
     if (startRecieve) {
