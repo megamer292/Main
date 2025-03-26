@@ -28,9 +28,10 @@
 
 <input id='Inp'/>
 <button onclick="changeSrc(Inp.value)">Change Normal Iframe Link</button>
-<button onclick="changeUnblSrc()">Change Basic Unblocked Iframe Link</button>
+<button onclick="changeUnblSrc(Inp.value)">Change Basic Unblocked Iframe Link</button>
 <button onclick="restartEngine()">Search Engine</button>
 <button onclick="Frame.src='https://megamer292.github.io/fun1.github.io/'">MonkeyGG2</button>
+<button onclick="changeUnblSrc('http://unblockedgames.blogbucket.org')">UnblockedGames</button>
 <button onclick="Frame.src='https://megamer2929.github.io/'">NettleWeb (WORKS AGAIN I THINK)</button>
 <button onclick="fullscreen();" style='position: absolute; right: 10px'>Fullscreen</button>
     
@@ -116,8 +117,8 @@ function changeSrc(arg) {
     Frame.src = tempTarget;
 }
 
-function changeUnblSrc() {
-    let tempTarget = Inp.value;
+function changeUnblSrc(arg) {
+    let tempTarget = arg;
     if (tempTarget.substr(0, 8) != 'https://'&&tempTarget.substr(0, 7) != 'http://') {tempTarget = 'https://' + tempTarget}
     Frame.src = 'data:text/html;base64,'+btoa(`<link rel="stylesheet" type="text/css" href="data:text/css;base64,Ym9keSwgZW1iZWQsIGlmcmFtZSB7Cglwb3NpdGlvbjogYWJzb2x1dGU7CglkaXNwbGF5OiBibG9jazsKCXdpZHRoOiAxMDAlOwoJaGVpZ2h0OiAxMDAlOwoJbWFyZ2luOiAwcHg7CglwYWRkaW5nOiAwcHg7Cglib3JkZXI6IG5vbmU7CglvdmVyZmxvdzogaGlkZGVuOwp9Cg==" /> <embed src="${tempTarget}" />`);
 }
