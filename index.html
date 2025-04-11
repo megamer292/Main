@@ -102,13 +102,7 @@ messageRecieve.on((data) => {
         if (Menu.style.display=='none') {Notification.style.display='block'}
         messageIdList.push(data.messageId)
     }
-    let tempString = ''
-    messageList.forEach((cElement) => {
-        tempString += "from <strong>"+cElement.fromId+"</strong> to <strong>"+cElement.toId+":</strong> "+cElement.message+" <br/> <br/>"
-    })
-    tempString = "<p id='recievedMessages'>"+tempString+"</p>"
-    recievedMessages.innerHTML = tempString
-    recievedMessages.scrollTop = recievedMessages.scrollHeight
+    messageRefresh();
 })
 
 function changeSrc(arg) {
@@ -210,6 +204,16 @@ function checkForMessage(messageId) {
     }
     if (messageId==null){booleanBuffer=false}
     return booleanBuffer;
+}
+
+function messageRefresh() {
+    let tempString = ''
+    messageList.forEach((cElement) => {
+        tempString += "from <strong>"+cElement.fromId+"</strong> to <strong>"+cElement.toId+":</strong> "+cElement.message+" <br/> <br/>"
+    })
+    tempString = "<p id='recievedMessages'>"+tempString+"</p>"
+    recievedMessages.innerHTML = tempString
+    recievedMessages.scrollTop = recievedMessages.scrollHeight
 }
 </script>
 
