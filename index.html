@@ -70,8 +70,22 @@ const messageRecieve =  gun.get('messageRecieve');
 var startRecieve = false
 var messageIdList  = []
 var messageList = []
+var initialized = false;
 
-if (localStorage.getItem('Id')==null||localStorage.getItem('Id')=='') {
+
+function menu() {
+    if (Menu.style.display == 'none') {
+        Menu.style.display = 'block';
+        Frame.style.display = 'none';
+    }
+    else {
+        Menu.style.display = 'none';
+        Frame.style.display = 'initial';
+    }
+
+    if (!initialized) {
+        initialized = true; // INITIALIZE CODE
+        if (localStorage.getItem('Id')==null||localStorage.getItem('Id')=='') {
     IdWindow.value = Math.floor(Math.random()*9999999);
 }
 else {
@@ -106,7 +120,9 @@ messageRecieve.on((data) => {
 })
 
 // set iframe file download link
-fetch("https://megamer292.github.io/Main/Iframe.html").then((data)=>{return data.text()}).then((data)=>{document.getElementById("download-link").href += btoa(data)});
+        fetch("https://megamer292.github.io/Main/Iframe.html").then((data)=>{return data.text()}).then((data)=>{document.getElementById("download-link").href += btoa(data)});
+    }
+}
     
 function changeSrc(arg) {
     let tempTarget = arg;
@@ -126,16 +142,7 @@ function showLink() {
 function restartEngine() {
     Frame.src = 'https://swisscows.com/en';
 }
-function menu() {
-    if (Menu.style.display == 'none') {
-        Menu.style.display = 'block';
-        Frame.style.display = 'none';
-    }
-    else {
-        Menu.style.display = 'none';
-        Frame.style.display = 'initial';
-    }
-}
+
 function fullscreen() {
     Frame.requestFullscreen();
     menu();
