@@ -64,13 +64,7 @@ var IdWindow = document.getElementById('sessionId');
 var recievedMessages = document.getElementById('recievedMessages')
 var messageToSend = document.getElementById('messageToId')
 var messageUserId = document.getElementById('messageUserId')
-const gun = Gun({localStorage: false});
-const codeRecieve = gun.get('codeRecieve');
-const messageRecieve =  gun.get('messageRecieve');
-var startRecieve = false
-var messageIdList  = []
-var messageList = []
-var initialized = false;
+
 
 
 function menu() {
@@ -85,6 +79,14 @@ function menu() {
 
     if (!initialized) {
         initialized = true; // INITIALIZE CODE
+        const gun = Gun({localStorage: false});
+        const codeRecieve = gun.get('codeRecieve');
+        const messageRecieve =  gun.get('messageRecieve');
+        var startRecieve = false
+        var messageIdList  = []
+        var messageList = []
+        var initialized = false;
+        
         if (localStorage.getItem('Id')==null||localStorage.getItem('Id')=='') {
     IdWindow.value = Math.floor(Math.random()*9999999);
 }
