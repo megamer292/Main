@@ -46,7 +46,7 @@
 <label>⠀⠀Id to message: </label><input  id='messageUserId' /><label>⠀⠀⠀⠀Message to send: </label> <input id='messageToId' onkeydown='checkEnterMessage()'/> <button onclick='sendMessage()'>Send Message</button> <button onclick='clearMessages()'>Clear Messages</button>
 <br/>
 
-<p id='recievedMessages' style="max-width: 225px; max-height: 300px; height: 150px; background-color: lightGray; overflow: auto; border-radius: 5%; border-color: black; border-width: 3px; margin-left: 15px; border: solid; padding-left: 10px; margin-top: 10; resize: both;"></p>
+<p id='recievedMessages' style="max-width: 225px; max-height: 300px; background-color: lightGray; overflow: auto; border-radius: 5%; border-color: black; border-width: 3px; margin-left: 15px; border: solid; padding-left: 10px; margin-top: 10; resize: both;"></p>
 
 
     
@@ -64,30 +64,14 @@ var IdWindow = document.getElementById('sessionId');
 var recievedMessages = document.getElementById('recievedMessages')
 var messageToSend = document.getElementById('messageToId')
 var messageUserId = document.getElementById('messageUserId')
+const gun = Gun({localStorage: false});
+const codeRecieve = gun.get('codeRecieve');
+const messageRecieve =  gun.get('messageRecieve');
+var startRecieve = false
+var messageIdList  = []
+var messageList = []
 
-
-
-function menu() {
-    if (Menu.style.display == 'none') {
-        Menu.style.display = 'block';
-        Frame.style.display = 'none';
-    }
-    else {
-        Menu.style.display = 'none';
-        Frame.style.display = 'initial';
-    }
-
-    if (!initialized) {
-        initialized = true; // INITIALIZE CODE
-        const gun = Gun({localStorage: false});
-        const codeRecieve = gun.get('codeRecieve');
-        const messageRecieve =  gun.get('messageRecieve');
-        var startRecieve = false
-        var messageIdList  = []
-        var messageList = []
-        var initialized = false;
-        
-        if (localStorage.getItem('Id')==null||localStorage.getItem('Id')=='') {
+if (localStorage.getItem('Id')==null||localStorage.getItem('Id')=='') {
     IdWindow.value = Math.floor(Math.random()*9999999);
 }
 else {
@@ -122,9 +106,7 @@ messageRecieve.on((data) => {
 })
 
 // set iframe file download link
-        fetch("https://megamer292.github.io/Main/Iframe.html").then((data)=>{return data.text()}).then((data)=>{document.getElementById("download-link").href += btoa(data)});
-    }
-}
+fetch("https://megamer292.github.io/Main/Iframe.html").then((data)=>{return data.text()}).then((data)=>{document.getElementById("download-link").href += btoa(data)});
     
 function changeSrc(arg) {
     let tempTarget = arg;
@@ -144,7 +126,16 @@ function showLink() {
 function restartEngine() {
     Frame.src = 'https://swisscows.com/en';
 }
-
+function menu() {
+    if (Menu.style.display == 'none') {
+        Menu.style.display = 'block';
+        Frame.style.display = 'none';
+    }
+    else {
+        Menu.style.display = 'none';
+        Frame.style.display = 'initial';
+    }
+}
 function fullscreen() {
     Frame.requestFullscreen();
     menu();
