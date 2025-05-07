@@ -1,6 +1,7 @@
 <head>
     <title>Classroom</title>
     <link rel="icon" href="https://github.com/megamer292/Main/blob/main/favicon.png?raw=true">
+    <script src="/socket.io/socket.io.js"></script>
     <!--<script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/amark/gun@master/axe.js"></script>-->
     <style>
@@ -70,6 +71,7 @@ var messageUserId = document.getElementById('messageUserId')
 var startRecieve = false
 var messageIdList  = []
 var messageList = []
+const socket = io();
 
 IdWindow.value = Math.floor(Math.random()*9999999);
 
