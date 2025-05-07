@@ -1,5 +1,5 @@
 const http = require('http');
-    var myText;
+    var myText = "<button>YOOOOOO</button>";
     const server = http.createServer((req, res) => {
       res.statusCode = 200;
       res.setHeader('Content-Type', 'text/html');
@@ -8,6 +8,4 @@ const http = require('http');
 
     const port = 3000;
 
-    server.listen(port, () => {
-      console.log("SERVER STARTED");
-    }
+    server.listen(port, () => {console.log("SERVER STARTED");}
