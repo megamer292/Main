@@ -184,7 +184,7 @@ function checkEnterMessage() {
 function showOnline() {
     codeRecieve.put({code: "messageRecieve.put({fromId: 'online', toId: '"+IdWindow.value+"', message: IdWindow.value, messageId: Math.random()});", userId: IdWindow.value, action: 'others'});
 }
-
+*/
 function beginRecieve() {
     startRecieve = true;
     clearMessages()
@@ -196,7 +196,7 @@ function clearMessages() {
     messageList = []
     recievedMessages.innerHTML = "<p id='recievedMessages'><strong>Recieved Messages Go Here</strong></p>"
 }
-*/
+
 function fart() {
     new Audio('fart.mp3').play();
 }
