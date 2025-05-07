@@ -11,7 +11,7 @@ const server = http.createServer((req, res) => {
 
 io = new socketio.Server(server);
 
-console.log(id);
+console.log(io);
 
 io.on('connection', client=>{
   console.log('CLIENT HAS CONNECTED');
