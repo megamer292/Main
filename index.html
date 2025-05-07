@@ -71,13 +71,15 @@ var startRecieve = false
 var messageIdList  = []
 var messageList = []
 
-if (localStorage.getItem('Id')==null||localStorage.getItem('Id')=='') {
+IdWindow.value = Math.floor(Math.random()*9999999);
+
+/*if (localStorage.getItem('Id')==null||localStorage.getItem('Id')=='') {
     IdWindow.value = Math.floor(Math.random()*9999999);
 }
 else {
     IdWindow.value = localStorage.getItem('Id')
 }
-
+*/
 setInterval(heartbeat, 250);
 setTimeout(beginRecieve, 1000)
 messageUserId.value = 'all'
