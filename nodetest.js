@@ -1,4 +1,6 @@
 const http = require('http');
+const socketio = require('socket.io');
+
 
 var myText = "<button>YOOOOOO</button>";
 const server = http.createServer((req, res) => {
@@ -7,9 +9,9 @@ const server = http.createServer((req, res) => {
   res.end(myText);
 });
 
-const socketio = require('socket.io')(server);
+io = new socketio.Server(server);
 
-socketio.on('connection', client=>{
+io.on('connection', client=>{
   console.log('CLIENT HAS CONNECTED');
 })
 
