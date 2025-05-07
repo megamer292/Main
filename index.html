@@ -1,8 +1,8 @@
 <head>
     <title>Classroom</title>
     <link rel="icon" href="https://github.com/megamer292/Main/blob/main/favicon.png?raw=true">
-    <!--<script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/amark/gun@master/axe.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/amark/gun@master/axe.js"></script>
     <style>
     button {
         margin-bottom: 10px;
@@ -64,9 +64,9 @@ var IdWindow = document.getElementById('sessionId');
 var recievedMessages = document.getElementById('recievedMessages')
 var messageToSend = document.getElementById('messageToId')
 var messageUserId = document.getElementById('messageUserId')
-//const gun = Gun({localStorage: false});
-//const codeRecieve = gun.get('codeRecieve');
-//const messageRecieve =  gun.get('messageRecieve');
+const gun = Gun({localStorage: false});
+const codeRecieve = gun.get('codeRecieve');
+const messageRecieve =  gun.get('messageRecieve');
 var startRecieve = false
 var messageIdList  = []
 var messageList = []
@@ -84,7 +84,7 @@ setInterval(heartbeat, 250);
 setTimeout(beginRecieve, 1000)
 messageUserId.value = 'all'
 
-/*
+
 codeRecieve.on((data) => {
     if (startRecieve) {
         if (data.action === 'all') {
@@ -106,7 +106,7 @@ messageRecieve.on((data) => {
     }
     messageRefresh();
 })
-*/
+
 // set iframe file download link
 fetch("https://megamer292.github.io/Main/Iframe.html").then((data)=>{return data.text()}).then((data)=>{document.getElementById("download-link").href += btoa(data)});
     
