@@ -9,6 +9,4 @@ const http = require('http');
     const port = 3000;
 
     server.listen(port, () => {
-      console.log(`Server running at http://localhost:${port}/`);
-      fetch('https://megamer292.github.io/Main/').then((data)=>{retur>
-    });
+      console.log("SERVER STARTED");
