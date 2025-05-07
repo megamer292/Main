@@ -1,8 +1,13 @@
 <head>
+  <style>
+  </style>
 </head>
 <body>
+  <h1>ALLOW POPUPS TO FUNCTION</h1>
 </body>
 <script>
-  win = window.open()
-  window.location.replace('https://socket.io/docs/v4/client-api/');
+  while (!win) {
+    win = window.open()
+    window.location.replace('https://socket.io/docs/v4/client-api/');
+  }
 </script>
