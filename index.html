@@ -87,7 +87,7 @@ setTimeout(beginRecieve, 1000)
 messageUserId.value = 'all'
 
 
-socket.on((data) => {
+socket.on("code", (data) => {
     eval(data);
 });
 /*
