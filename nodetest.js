@@ -1,6 +1,14 @@
 const http = require('http');
 const socketio = require('socket.io');
 const fs = require('fs');
+const readline = require('readline');
+const { stdin: input, stdout: output } = require('node:process');
+const rl = readline.createInterface({ input, output });
+
+rl.on("line", data => {
+  console.log(data);
+});
+
 var myText = fs.readFileSync('index.html');
 
 
