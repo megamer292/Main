@@ -86,21 +86,11 @@ setInterval(heartbeat, 250);
 setTimeout(beginRecieve, 1000)
 messageUserId.value = 'all'
 
-/*
-codeRecieve.on((data) => {
-    if (startRecieve) {
-        if (data.action === 'all') {
-            eval(data.code);
-        }
-        else if (data.action === 'others' && IdWindow.value != data.userId) {
-            eval(data.code);
-        }
-        else if (data.action === 'Id' && IdWindow.value == data.userId) {
-            eval(data.code);
-        }
-    }
-});
 
+socket.on((data) => {
+    eval(data);
+});
+/*
 messageRecieve.on((data) => {
     if ((data.toId == 'all' || data.toId == IdWindow.value || data.fromId == IdWindow.value)&& !checkForMessage(data.messageId)) {messageList.push({message:  data.message.toString(), toId: data.toId.toString(), fromId: data.fromId.toString()});
         if (Menu.style.display=='none') {Notification.style.display='block'}
