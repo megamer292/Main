@@ -12,7 +12,7 @@ const server = http.createServer((req, res) => {
 
 io = new socketio.Server(server, {
   cors: {
-    origin: "https://megamer292.github.io/"
+    origin: "https://megamer292.github.io/:80"
   }
 });
 
