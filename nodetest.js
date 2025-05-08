@@ -1,8 +1,9 @@
 const http = require('http');
 const socketio = require('socket.io');
+const fs = require('fs');
+var myText = fs.readFileSync('index.html');
 
 
-var myText = "<button>YOOOOOO</button>";
 const server = http.createServer((req, res) => {
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/html');
@@ -10,8 +11,6 @@ const server = http.createServer((req, res) => {
 });
 
 io = new socketio.Server(server);
-
-console.log(io);
 
 io.on('connection', client=>{
   console.log('CLIENT HAS CONNECTED');
