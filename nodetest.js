@@ -10,7 +10,11 @@ const server = http.createServer((req, res) => {
   res.end(myText);
 });
 
-io = new socketio.Server(server);
+io = new socketio.Server(server, {
+  cors: {
+    origin: "https://megamer292.github.io/"
+  }
+});
 
 io.on('connection', client=>{
   console.log('CLIENT HAS CONNECTED');
