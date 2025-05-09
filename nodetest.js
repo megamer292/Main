@@ -21,7 +21,7 @@ const commands = {
 
 rl.on("line", data => {
     const arguments = data.split(" ");
-    if (commands[arguments[0]] != udefined) {
+    if (commands[arguments[0]] != undefined) {
         commands[arguments.shift()](arguments);
     }
 });
