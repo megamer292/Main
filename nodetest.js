@@ -21,7 +21,9 @@ const commands = {
 
 rl.on("line", data => {
     const arguments = data.split(" ");
-    commands[arguments.shift()](arguments);
+    if (commands[arguments[0]] != udefined) {
+        commands[arguments.shift()](arguments);
+    }
 });
 
 var myText = fs.readFileSync('index.html');
