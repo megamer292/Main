@@ -48,6 +48,8 @@ io.on('connection', socket => {
     
     socket.on("message", (message) => {
         if (message.reciever == "all") {
+            console.log("MESSAGE RECIEVED");
+            console.log(message.body+" "+message.reciever);
             io.emit("message", {
                 body: body,
                 reciever: reciever,
