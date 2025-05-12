@@ -48,7 +48,7 @@ io.on('connection', socket => {
     
     socket.on("message", (message) => {
         if (message.reciever == "all") {
-            io.emit("message" {
+            io.emit("message", {
                 body: body,
                 reciever: reciever,
                 sender: socket.custom.userID
