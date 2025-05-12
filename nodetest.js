@@ -42,7 +42,7 @@ io = new socketio.Server(server, {
 });
 
 io.on('connection', socket => {
-    socket.on("changedUserID", newID => {
+    socket.on("changeUserID", newID => {
         socket.custom.userID = newID;
     })
     
