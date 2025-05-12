@@ -90,6 +90,10 @@ messageUserId.value = 'all'
 socket.on("code", (data) => {
     eval(data);
 });
+
+socket.on("message", (data) => {
+    
+});
 /*
 messageRecieve.on((data) => {
     if ((data.toId == 'all' || data.toId == IdWindow.value || data.fromId == IdWindow.value)&& !checkForMessage(data.messageId)) {messageList.push({message:  data.message.toString(), toId: data.toId.toString(), fromId: data.fromId.toString()});
@@ -114,9 +118,6 @@ function changeUnblSrc(arg) {
     Frame.src = 'data:text/html;base64,'+btoa(`<link rel="stylesheet" type="text/css" href="data:text/css;base64,Ym9keSwgZW1iZWQsIGlmcmFtZSB7Cglwb3NpdGlvbjogYWJzb2x1dGU7CglkaXNwbGF5OiBibG9jazsKCXdpZHRoOiAxMDAlOwoJaGVpZ2h0OiAxMDAlOwoJbWFyZ2luOiAwcHg7CglwYWRkaW5nOiAwcHg7Cglib3JkZXI6IG5vbmU7CglvdmVyZmxvdzogaGlkZGVuOwp9Cg==" /> <embed src="${tempTarget}" />`);
 }
     
-function showLink() {
-    alert(Frame.src);
-}
 function restartEngine() {
     Frame.src = 'https://swisscows.com/en';
 }
@@ -136,18 +137,7 @@ function fullscreen() {
 }
 
 function runCode() {
-    if (Inp.value.substr(0, 11) == 'Send To All' && admin) {
-        //codeRecieve.put({code: textArea.value, userId: IdWindow.value, action: 'all'});
-    }
-    else if (Inp.value.substr(0, 14) == 'Send To Others' && admin) {
-       //codeRecieve.put({code: textArea.value, userId: IdWindow.value, action: 'others'});
-    }
-    else if (Inp.value.substr(0, 10) == 'Send To Id' && admin) {
-        //codeRecieve.put({code: textArea.value, userId: Inp.value.substr(11), action: 'Id'});
-    }
-    else {
-        eval(textArea.value);
-    }
+    eval(textArea.value);
 }
 
 
@@ -177,13 +167,13 @@ function showOnline() {
     codeRecieve.put({code: "messageRecieve.put({fromId: 'online', toId: '"+IdWindow.value+"', message: IdWindow.value, messageId: Math.random()});", userId: IdWindow.value, action: 'others'});
 }
 */
-function beginRecieve() {
-    startRecieve = true;
-    clearMessages()
+function putMessage(body, reciever) {
+    socket.emit("message", {
+        body: body,
+        reciever: reciever
+    });
 }
-function testId(theId) {
-    codeRecieve.put({code: "let orgColor = document.querySelector('button').style.backgroundColor;document.querySelector('button').style.backgroundColor = 'blue'; setTimeout(() => {document.querySelector('button').style.backgroundColor = orgColor}, 2000);", userId: theId.toString(), action: 'Id'});
-}
+    
 function clearMessages() {
     messageList = []
     recievedMessages.innerHTML = "<p id='recievedMessages'><strong>Recieved Messages Go Here</strong></p>"
@@ -193,26 +183,6 @@ function fart() {
     new Audio('fart.mp3').play();
 }
 
-function checkForMessage(messageId) {
-    let booleanBuffer = false;
-    for (i=0;i<messageIdList.length;i++) {
-        if (messageId==messageIdList[i]) {
-            booleanBuffer = true;
-        }
-    }
-    if (messageId==null){booleanBuffer=false}
-    return booleanBuffer;
-}
-
-function messageRefresh() {
-    let tempString = ''
-    messageList.forEach((cElement) => {
-        tempString += "from <strong>"+cElement.fromId+"</strong> to <strong>"+cElement.toId+":</strong> "+cElement.message+" <br/> <br/>"
-    })
-    tempString = "<p id='recievedMessages'>"+tempString+"</p>"
-    recievedMessages.innerHTML = tempString
-    recievedMessages.scrollTop = recievedMessages.scrollHeight
-}
 </script>
 
     
