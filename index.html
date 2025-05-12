@@ -76,8 +76,7 @@ const socket = io('http://172.22.246.138:3000/');
 IdWindow.value = Math.floor(Math.random()*9999999);
 clearMessages();
 messageUserId.value = 'all';
-socket.emit("changeUserID", IdWindow.value);
-
+    
 IdWindow.addEventListener('keydown', function(event) {
     socket.emit("changeUserID", IdWindow.value);
 }
