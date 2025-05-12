@@ -51,9 +51,9 @@ io.on('connection', socket => {
             console.log("MESSAGE RECIEVED");
             console.log(message.body+" "+message.reciever);
             io.emit("message", {
-                body: body,
-                reciever: reciever,
-                sender: socket.custom.userID
+                body: message.body,
+                reciever: message.reciever,
+                sender: "test"
             });
         }
     });
