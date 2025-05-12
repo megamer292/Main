@@ -81,8 +81,6 @@ else {
     IdWindow.value = localStorage.getItem('Id')
 }
 */
-setInterval(heartbeat, 250);
-setTimeout(beginRecieve, 1000)
 messageUserId.value = 'all'
 
 
@@ -137,16 +135,6 @@ function fullscreen() {
 
 function runCode() {
     eval(textArea.value);
-}
-
-
-function heartbeat() {
-    if (IdWindow.value == ''||IdWindow.value == ' ') {IdWindow.value = 'blank'}
-    //localStorage.setItem("Id", IdWindow.value);
-
-    if (Menu.style.display != 'none') {
-        Notification.style.display = 'none';
-    }
 }
 
 /*function sendMessage() {
