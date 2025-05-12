@@ -140,7 +140,7 @@ function sendMessage(body, reciever) {
 
 function putMessage(body, reciever, sender) {
     let temp = document.createElement("p");
-    temp.innerHTML = `<p> From: <strong>${sender}</strong> To: <strong>${reciever}: ${body}</strong></p>`;
+    temp.innerHTML = `<p> From: <strong>${sender}</strong> To: <strong>${reciever}:</strong> ${body}</p>`;
     recievedMessages.appendChild(temp);
 }
     
