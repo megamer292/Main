@@ -73,15 +73,8 @@ var messageIdList  = []
 var messageList = []
     
 IdWindow.value = Math.floor(Math.random()*9999999);
-
-/*if (localStorage.getItem('Id')==null||localStorage.getItem('Id')=='') {
-    IdWindow.value = Math.floor(Math.random()*9999999);
-}
-else {
-    IdWindow.value = localStorage.getItem('Id')
-}
-*/
-messageUserId.value = 'all'
+clearMessages();
+messageUserId.value = 'all';
 
 
 socket.on("code", (data) => {
@@ -137,23 +130,6 @@ function runCode() {
     eval(textArea.value);
 }
 
-/*function sendMessage() {
-    if (messageToSend.value) {
-    messageRecieve.put({message: messageToSend.value, fromId: IdWindow.value, toId: messageUserId.value, messageId: Math.random()});
-    messageToSend.value = '';
-    }
-}
-
-function checkEnterMessage() {
-    if (event.key ==  'Enter') {
-        sendMessage()
-    }
-}
-    
-function showOnline() {
-    codeRecieve.put({code: "messageRecieve.put({fromId: 'online', toId: '"+IdWindow.value+"', message: IdWindow.value, messageId: Math.random()});", userId: IdWindow.value, action: 'others'});
-}
-*/
 function sendMessage(body, reciever) {
     socket.emit("message", {
         body: body,
