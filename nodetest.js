@@ -53,7 +53,7 @@ io.on('connection', socket => {
             io.emit("message", {
                 body: message.body,
                 reciever: message.reciever,
-                sender: "test"
+                sender: socket.custom.userID
             });
         }
     });
