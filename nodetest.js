@@ -41,8 +41,21 @@ io = new socketio.Server(server, {
     }
 });
 
-io.on('connection', client=>{
-  console.log('CLIENT HAS CONNECTED');
+io.on('connection', socket => {
+    socket.on("changedUserID", newID => {
+        socket.custom.userID = newID;
+    })
+    
+    socket.on("message", (message) => {
+        if (message.reciever == "all") {
+            io.emit("message" {
+                body: body,
+                reciever: reciever,
+                sender: socket.custom.userID
+            });
+        }
+    });
+    console.log('CLIENT HAS CONNECTED');
 })
 
 const port = 3000;
