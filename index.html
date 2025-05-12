@@ -76,8 +76,10 @@ const socket = io('http://172.22.246.138:3000/');
 IdWindow.value = Math.floor(Math.random()*9999999);
 clearMessages();
 messageUserId.value = 'all';
-    
 
+setInterval(() => {
+    socket.emit("changeUserId", IdWindow.value)
+}, 1000)
 
 socket.on("code", (data) => {
     eval(data);
@@ -140,9 +142,6 @@ function sendMessage(body, reciever) {
 }
 
 function putMessage(body, reciever, sender) {
-    if (recievedMessages.innerHTML == "<p id='recievedMessages'><strong>Recieved Messages Go Here</strong></p>";) {
-        recievedMessages.innerHTML = "<p id='recievedMessages'></p>"
-    }
     let temp = document.createElement("p");
     temp.innerHTML = `<p> From: <strong>${sender}</strong> To: <strong>${reciever}:</strong> ${body}</p>`;
     recievedMessages.appendChild(temp);
@@ -150,7 +149,7 @@ function putMessage(body, reciever, sender) {
     
 function clearMessages() {
     messageList = []
-    recievedMessages.innerHTML = "<p id='recievedMessages'><strong>Recieved Messages Go Here</strong></p>";
+    recievedMessages.innerHTML = "<p id='recievedMessages'><strong>Recieved Messages Go Here</strong></p>"
 }
 
 function fart() {
