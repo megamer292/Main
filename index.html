@@ -77,6 +77,10 @@ IdWindow.value = Math.floor(Math.random()*9999999);
 clearMessages();
 messageUserId.value = 'all';
 
+setInterval(250, () => {
+    socket.emit("changeUserID", IdWindow.value)
+})
+
 
 socket.on("code", (data) => {
     eval(data);
