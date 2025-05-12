@@ -46,6 +46,7 @@ io.on('connection', socket => {
     
     socket.on("changeUserID", newID => {
         socket.custom.userID = newID;
+        console.log(newID+" is speaking" )
     })
     
     socket.on("message", (message) => {
