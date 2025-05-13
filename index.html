@@ -140,12 +140,14 @@ function sendMessage(body, reciever) {
         body: body,
         reciever: reciever
     });
+    messageToSend.value = '';
 }
 
 function putMessage(body, reciever, sender) {
     let temp = document.createElement("p");
     temp.innerHTML = `<p> From: <strong>${sender}</strong> To: <strong>${reciever}:</strong> ${body}</p>`;
     recievedMessages.appendChild(temp);
+    recievedMessages.scrollBy(0, 99999);
 }
     
 function clearMessages() {
