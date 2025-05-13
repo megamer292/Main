@@ -78,7 +78,7 @@ clearMessages();
 messageUserId.value = 'all';
 socket.emit("changeUserID", IdWindow.value);
 
-IdWindow.addEventListener("keydown", changeID);
+IdWindow.addEventListener("keyup", changeID);
 
 socket.on("code", (data) => {
     eval(data);
