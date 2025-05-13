@@ -61,8 +61,13 @@ io.on('connection', socket => {
     });
 
     socket.on("showIDs", (data) => { 
-        socket.emit("showIDs")
+        socket.emit("showIDs");
     })
+
+    socket.on("disconnecting", (reason) => {
+        console.log(socket.custom.userID+" has disconnected")
+    });
+    
     console.log('CLIENT HAS CONNECTED');
 })
 
