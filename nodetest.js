@@ -45,8 +45,10 @@ io.on('connection', socket => {
     socket.custom = {};
     
     socket.on("changeUserID", newID => {
-        console.log(socket.custom.userID+" has renamed to "+newID)
-        socket.custom.userID = newID;
+        if (newID.trim() != '') {
+            console.log(socket.custom.userID+" has renamed to "+newID)
+            socket.custom.userID = newID.trim();
+        }
     })
     
     socket.on("message", (message) => {
