@@ -140,10 +140,12 @@ function runCode() {
 }
 
 function sendMessage(body, reciever) {
-    socket.emit("message", {
-        body: body,
-        reciever: reciever
-    });
+    if (body.trim() != ''){
+        socket.emit("message", {
+            body: body.trim(),
+            reciever: reciever
+        });
+    }
     messageToSend.value = '';
 }
 
