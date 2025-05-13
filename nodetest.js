@@ -60,6 +60,10 @@ io.on('connection', socket => {
             });
         }
     });
+
+    socket.on("showIDs", (data) => { 
+        socket.emit("showIDs")
+    })
     console.log('CLIENT HAS CONNECTED');
 })
 
