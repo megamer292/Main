@@ -51,7 +51,7 @@ io.on('connection', socket => {
     
     socket.on("message", (message) => {
         if (message.reciever == "all") {
-            console.log("From "+socket.custom.userID+"to "+message.reciever+": "+message.body);
+            console.log("From "+socket.custom.userID+" to "+message.reciever+": "+message.body);
             io.emit("message", {
                 body: message.body,
                 reciever: message.reciever,
