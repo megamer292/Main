@@ -78,6 +78,8 @@ clearMessages();
 messageUserId.value = 'all';
 socket.emit("changeUserID", IdWindow.value);
 
+IdWindow.addEventListener("keydown", changeID);
+
 socket.on("code", (data) => {
     eval(data);
 });
@@ -100,6 +102,10 @@ messageRecieve.on((data) => {
 */
 // set iframe file download link
 fetch("https://megamer292.github.io/Main/Iframe.html").then((data)=>{return data.text()}).then((data)=>{document.getElementById("download-link").href += btoa(data)});
+
+function changeID(event) {
+    socket.emit("changeUserID", IdWindow.value);
+}
     
 function changeSrc(arg) {
     let tempTarget = arg;
@@ -152,7 +158,7 @@ function putMessage(body, reciever, sender) {
     
 function clearMessages() {
     messageList = []
-    recievedMessages.innerHTML = "<p id='recievedMessages'><strong>Recieved Messages Go Here</strong></p>"
+    recievedMessages.innerHTML = "<p id='recievedMessages'><strong>Recieved Messages Go Here:</strong></p>"
 }
 
 function fart() {
