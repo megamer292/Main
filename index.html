@@ -87,10 +87,6 @@ socket.on("code", (data) => {
 });
 
 socket.on("message", (data) => {
-    if (!startRecieve)  {
-        startRecieve = true;
-        messageRecieve.innerHTML = '';
-    }
     putMessage(data.body, data.reciever, data.sender);
 });
 /*
