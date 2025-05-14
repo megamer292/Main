@@ -23,7 +23,7 @@ const commands = {
         if (arguments[0] == "rename")  {
             arguments.shift();
         }
-    };
+    }
     "exit": () => {
         io.close();
         setTimeout(250,  () => {
