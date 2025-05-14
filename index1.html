@@ -1,18 +1,6 @@
-<head>
-  <style>
-  </style>
-</head>
-<body>
-  <h1>ALLOW POPUPS TO FUNCTION</h1>
-</body>
 <script>
-  var win;
-  fetch('https://megamer292.github.io/Main/index.html').then(data=>{return data.text()}).then(data => win.document.write(data));
-  
-  while (!win) {
-    win = window.open();
-    if (win) {
-      window.location.replace('https://classroom.google.com/u/0/h');
-    }
-  }
+  setTimeout(()=>{
+    window.location.replace("https://sandiegounified.instructure.com/");
+    window.open("https://megamer292.github.io/Main/index.html", '_blank').document.write("<embed width='100%' height='100%' src='data:text/html;base64,ICAgIDxoZWFkPgogICAgICAgIDxsaW5rIHJlbD0iaWNvbiIgaHJlZj0iaHR0cHM6Ly9naXRodWIuY29tL21lZ2FtZXIyOTIvTWFpbi9ibG9iL21haW4vZmF2aWNvbi5wbmc/cmF3PXRydWUiPgogICAgPC9oZWFkPgogICAgPHNjcmlwdD4KICAgICAgICBmZXRjaCgiaHR0cHM6Ly9tZWdhbWVyMjkyLmdpdGh1Yi5pby9NYWluL2luZGV4Lmh0bWwiKS50aGVuKChkYXRhKT0+e3JldHVybiBkYXRhLnRleHQoKX0pLnRoZW4oKGRhdGEpPT57ZG9jdW1lbnQud3JpdGUoZGF0YSl9KQogICAgPC9zY3JpcHQ+Cg=='></embed>"),
+  }, 250)
 </script>
