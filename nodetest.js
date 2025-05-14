@@ -26,9 +26,9 @@ const commands = {
     },
     "exit": () => {
         io.close();
-        setTimeout(250,  () => {
+        setTimeout(() => {
             server.close(serverClosing);
-        });
+        }, 250);
     }
 }
 
