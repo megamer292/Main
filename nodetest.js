@@ -5,9 +5,11 @@ const readline = require('readline');
 const { stdin: input, stdout: output } = require('node:process');
 
 const rl = readline.createInterface({ input, output });
+var returningUsers = {}
 const commands = {
     "code": (arguments) => {
         if (arguments[0] === "server") {
+            arguments.shift();
             eval(arguments.join(' '));
         }
         else if (arguments[0] === "client") {
@@ -16,6 +18,18 @@ const commands = {
                 io.emit('code', arguments.join(' '));
             }
         }
+    },
+    "client": (arguments) => {
+        if (arguments[0] == "rename")  {
+            arguments.shift();
+        }
+    };
+    "exit": () => {
+        io.close();
+        setTimeout(250,  () => {
+            server.close();
+            console.log("SERVER CLOSING");
+        });
     }
 }
 
@@ -42,10 +56,20 @@ io = new socketio.Server(server, {
 });
 
 io.on('connection', socket => {
+
     socket.custom = {
-        IPAddress: socket.handshake.address
+        userID: undefined,
+        person: undefined
     };
-    
+
+    if (returningUsers[socket.handshake.address] != undefined) {
+        socket.custom.person = returningUsers[socket.handshake.address].person
+    }
+    else {
+        returningUsers[socket.handshake.address] = {
+            person: undefined
+        };
+    }
     
     socket.on("changeUserID", newID => {
         if (newID.trim() != '') {
@@ -70,12 +94,13 @@ io.on('connection', socket => {
     })
 
     socket.on("disconnecting", (reason) => {
-        console.log(socket.custom.userID+" has disconnected")
+        console.log(socket.custom.userID+" ("+socket.custom.person+")"+" has disconnected")
     });
     
-    console.log('CLIENT HAS CONNECTED FROM' + socket.custom.IPAddress);
+    console.log(socket.custom.userID + ' HAS CONNECTED FROM ' + socket.handshake.address);
 })
 
 const port = 3000;
 
 server.listen(port, () => {console.log("SERVER STARTED");});
+console.log("SERVER CLOSING");
