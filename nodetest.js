@@ -96,7 +96,7 @@ io.on('connection', socket => {
         console.log(socket.custom.userID+" ("+socket.custom.person+")"+" has disconnected")
     });
     
-    console.log(socket.custom.userID + ' HAS CONNECTED FROM ' + socket.handshake.address);
+    console.log(socket.custom.userID +" ("+socket.custom.person+")" + ' HAS CONNECTED FROM ' + socket.handshake.address);
 });
 
 const port = 3000;
