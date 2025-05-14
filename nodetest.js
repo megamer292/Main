@@ -27,8 +27,7 @@ const commands = {
     "exit": () => {
         io.close();
         setTimeout(250,  () => {
-            server.close();
-            console.log("SERVER CLOSING");
+            server.close(serverClosing);
         });
     }
 }
@@ -98,9 +97,12 @@ io.on('connection', socket => {
     });
     
     console.log(socket.custom.userID + ' HAS CONNECTED FROM ' + socket.handshake.address);
-})
+});
 
 const port = 3000;
 
 server.listen(port, () => {console.log("SERVER STARTED");});
-console.log("SERVER CLOSING");
+
+function serverClosing() {
+    console.log("SERVER CLOSING");
+}
