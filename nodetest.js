@@ -5,7 +5,7 @@ const readline = require('readline');
 const { stdin: input, stdout: output } = require('node:process');
 
 const rl = readline.createInterface({ input, output });
-var returningUsers = {}
+var returningUsers = {};
 const commands = {
     "code": (arguments) => {
         if (arguments[0] === "server") {
@@ -104,5 +104,6 @@ const port = 3000;
 server.listen(port, () => {console.log("SERVER STARTED");});
 
 function serverClosing() {
+    fs.writeFileSync("returningUsers.json", JSON.stringify(returningUsers));
     console.log("SERVER CLOSING");
 }
