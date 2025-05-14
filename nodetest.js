@@ -5,7 +5,7 @@ const readline = require('readline');
 const { stdin: input, stdout: output } = require('node:process');
 
 const rl = readline.createInterface({ input, output });
-var returningUsers = {};
+var returningUsers = JSON.parse(fs.readFileSync("returningUsers.json"));
 const commands = {
     "code": (arguments) => {
         if (arguments[0] === "server") {
