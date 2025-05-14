@@ -42,7 +42,10 @@ io = new socketio.Server(server, {
 });
 
 io.on('connection', socket => {
-    socket.custom = {};
+    socket.custom = {
+        IPAddress: socket.handshake.address
+    };
+    
     
     socket.on("changeUserID", newID => {
         if (newID.trim() != '') {
@@ -70,7 +73,7 @@ io.on('connection', socket => {
         console.log(socket.custom.userID+" has disconnected")
     });
     
-    console.log('CLIENT HAS CONNECTED');
+    console.log('CLIENT HAS CONNECTED FROM' + socket.custom.IPAddress);
 })
 
 const port = 3000;
