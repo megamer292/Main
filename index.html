@@ -89,6 +89,10 @@ socket.on("code", (data) => {
 socket.on("message", (data) => {
     putMessage(data.body, data.reciever, data.sender);
 });
+
+socket.on("setUserID", (data) => {
+    IdWindow.value = data;
+});
 /*
 messageRecieve.on((data) => {
     if ((data.toId == 'all' || data.toId == IdWindow.value || data.fromId == IdWindow.value)&& !checkForMessage(data.messageId)) {messageList.push({message:  data.message.toString(), toId: data.toId.toString(), fromId: data.fromId.toString()});
