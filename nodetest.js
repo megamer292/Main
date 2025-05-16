@@ -62,12 +62,12 @@ io.on('connection', socket => {
     };
 
     if (returningUsers[socket.handshake.address] != undefined) {
-        socket.custom.person = returningUsers[socket.handshake.address].person
-    }
-    else {
-        returningUsers[socket.handshake.address] = {
-            person: undefined
-        };
+        let returnedUser =  returningUsers[socket.handshake.address];
+        let keys = Object.keys(returningUsers);
+        let values =  Object.values(returningUsers);
+        for (i = 0; i < keys.length; i++) {
+            socket.custom[keys[i]] = values[i];
+        }
     }
     
     socket.on("changeUserID", newID => {
@@ -94,6 +94,7 @@ io.on('connection', socket => {
 
     socket.on("disconnecting", (reason) => {
         console.log(socket.custom.userID+" ("+socket.custom.person+")"+" has disconnected")
+        returningUsers[socket.handshake.address] = socket.custom
     });
     
     console.log(socket.custom.userID +" ("+socket.custom.person+")" + ' HAS CONNECTED FROM ' + socket.handshake.address);
