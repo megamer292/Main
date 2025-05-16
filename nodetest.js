@@ -63,6 +63,7 @@ io.on('connection', socket => {
 
     if (returningUsers[socket.handshake.address] != undefined) {
         socket.custom = returningUsers[socket.handshake.address];
+        socket.emit('setUserID', socket.custom.userID);
     }
     
     socket.on("changeUserID", newID => {
