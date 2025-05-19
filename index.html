@@ -1,14 +1,177 @@
-<button>INITIALIZE</button>
-<script>
-  initialize();
-  function initialize() {
-    window.open("https://megamer292.github.io/Main/index.html", '_blank').document.write(`
-    <head>
-    <link rel="icon" href="https://github.com/megamer292/Main/blob/main/favicon.png?raw=true">
+<head>
     <title>Classroom</title>
-    </head>
-    <link rel="stylesheet" type="text/css" href="data:text/css;base64,Ym9keSwgZW1iZWQsIGlmcmFtZSB7Cglwb3NpdGlvbjogYWJzb2x1dGU7CglkaXNwbGF5OiBibG9jazsKCXdpZHRoOiAxMDAlOwoJaGVpZ2h0OiAxMDAlOwoJbWFyZ2luOiAwcHg7CglwYWRkaW5nOiAwcHg7Cglib3JkZXI6IG5vbmU7CglvdmVyZmxvdzogaGlkZGVuOwp9Cg==" />
-    <embed src='data:text/html;base64,CiAgICA8aGVhZD4KICAgICAgIDxsaW5rIHJlbD0iaWNvbiIgaHJlZj0iaHR0cHM6Ly9naXRodWIuY29tL21lZ2FtZXIyOTIvTWFpbi9ibG9iL21haW4vZmF2aWNvbi5wbmc/cmF3PXRydWUiPgogICAgPC9oZWFkPgogICAgPHNjcmlwdD4KICAgICAgICB0YWJ6ID0gd2luZG93Lm9wZW4oKTsKICAgICAgICBmZXRjaCgiaHR0cHM6Ly9tZWdhbWVyMjkyLmdpdGh1Yi5pby9NYWluL2luZGV4MS5odG1sIikudGhlbigoZGF0YSk9PntyZXR1cm4gZGF0YS50ZXh0KCl9KS50aGVuKChkYXRhKT0+e3RhYnoud2luZG93LmRvY3VtZW50LndyaXRlKGRhdGEpfSkKICAgIDwvc2NyaXB0Pgo='></embed>`);
-    window.location.replace("https://sandiegounified.instructure.com/");
-  }
+    <link rel="icon" href="https://github.com/megamer292/Main/blob/main/favicon.png?raw=true">
+    <script src="http://172.22.246.138:3000/socket.io/socket.io.js"></script>
+   
+    <style>
+    button {
+        margin-bottom: 10px;
+    }
+    a {
+        color: purple;
+    }
+    </style>
+
+    
+</head>
+
+
+<body style='margin: 0; padding: 0;'>
+
+<button onclick='menu();' style='border-radius: 50%; height: 50px; position: absolute; top: 40px; right: 150px; margin: 0;'>MENU</button> <div id='notification' style='height: 14px; width: 14px; border-radius: 50%; position: absolute; background-color: dodgerBlue; border: solid; border-width: 2px; top: 40px; right: 150px; display: none;'></div>
+    
+<iframe allow="accelerometer; ambient-light-sensor; autoplay; battery; camera; display-capture; document-domain; encrypted-media; fullscreen; geolocation; gyroscope; layout-animations; legacy-image-formats; magnetometer; microphone; midi; navigation-override; oversized-images; payment; picture-in-picture; publickey-credentials-get; sync-script; sync-xhr; usb; screen-wake-lock; web-share; unoptimized-images; unsized-media; xr-spatial-tracking;" id='mainFrame' src='https://swisscows.com/en' style='border: none; margin: 0; margin-bottom: none; height: 100%; width: 100%;'></iframe>
+
+<div id='Menu' style='margin: 0; display: none; padding: none;'>
+
+<div style='width: 100%; height: 30px; background-color: DodgerBlue; margin: 0px; margin-bottom:10px'>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀<label>ID:</label><input id='sessionId' autocomplete="email"/>    ⠀⠀⠀⠀⠀⠀⠀  <a href='https://megamer292.github.io/Main/embed.html' onclick='return confirm("you might lose any unsaved game content, plus this section is uncompleted")'>TUTORIAL/ABOUT</a>⠀⠀⠀⠀⠀⠀<a id="download-link" onclick="alert(dataURL)">DOWNLOAD UPDATED IFRAME FILE</a></div>
+
+<input id='Inp'/>
+<button onclick="changeSrc(Inp.value)">Change Normal Iframe Link</button>
+<button onclick="changeUnblSrc(Inp.value)">Change Basic Unblocked Iframe Link</button>
+<button onclick="restartEngine()">Search Engine</button>
+<button onclick="Frame.src='https://megamer292.github.io/fun1.github.io/'">MonkeyGG2</button>
+<button onclick="changeUnblSrc('https://unblockedgames.blogbucket.org')">UnblockedGames</button>
+<button onclick="Frame.src='https://megamer2929.github.io/'">NettleWeb (WORKS AGAIN I THINK)</button>
+<button onclick="fullscreen();" style='position: absolute; right: 10px'>Fullscreen</button>
+    
+<br/>
+
+
+<textarea rows="10" cols="50" autocomplete="off" autocapitalize="off"></textarea>
+<button onclick="runCode()">Run Javascript</button>
+<button onclick='showOnline()'>Online Ids</button>
+
+<br/> <br/>
+<label>⠀⠀Id to message: </label><input  id='messageUserId' /><label>⠀⠀⠀⠀Message to send: </label> <input id='messageToId'/> <button onclick='sendMessage(messageToSend.value, messageUserId.value)'>Send Message</button> <button onclick='clearMessages()'>Clear Messages</button>
+<br/>
+
+<p id='recievedMessages' style="max-width: 225px; max-height: 300px; background-color: lightGray; overflow: auto; border-radius: 5%; border-color: black; border-width: 3px; margin-left: 15px; border: solid; padding-left: 10px; margin-top: 10; resize: both;"></p>
+
+
+    
+</div>
+</body>
+
+<script>
+var Inp = document.getElementById('Inp');
+var textArea  = document.querySelector('textarea');
+var Frame = document.querySelector('iframe');
+var Menu = document.getElementById('Menu');
+var menuButton  = document.querySelector('button');
+var Notification = document.getElementById('notification');
+var IdWindow = document.getElementById('sessionId');
+var recievedMessages = document.getElementById('recievedMessages');
+var messageToSend = document.getElementById('messageToId');
+var messageUserId = document.getElementById('messageUserId');
+var dataURL;
+//const gun = Gun({localStorage: false});
+//const codeRecieve = gun.get('codeRecieve');
+//const messageRecieve =  gun.get('messageRecieve');
+var startRecieve = false;
+var messageIdList  = [];
+var messageList = [];
+const socket = io('http://172.22.246.138:3000/');
+    
+setTimeout(() => {
+    if (IdWindow.value == '') {
+        IdWindow.value = Math.floor(Math.random()*9999999);
+    }
+}, 250);
+clearMessages();
+messageUserId.value = 'all';
+socket.emit("changeUserID", IdWindow.value);
+
+IdWindow.addEventListener("keyup", changeID);
+messageToSend.addEventListener("keydown", (e) => {if (e.key=="Enter") {sendMessage(messageToSend.value, messageUserId.value)}})
+
+socket.on("code", (data) => {
+    eval(data);
+});
+
+socket.on("message", (data) => {
+    putMessage(data.body, data.reciever, data.sender);
+});
+
+socket.on("setUserID", (data) => {
+    IdWindow.value = data;
+});
+/*
+messageRecieve.on((data) => {
+    if ((data.toId == 'all' || data.toId == IdWindow.value || data.fromId == IdWindow.value)&& !checkForMessage(data.messageId)) {messageList.push({message:  data.message.toString(), toId: data.toId.toString(), fromId: data.fromId.toString()});
+        if (Menu.style.display=='none') {Notification.style.display='block'}
+        messageIdList.push(data.messageId)
+    }
+    messageRefresh();
+})
+*/
+// set iframe file download link
+fetch("https://megamer292.github.io/Main/Iframe.html").then((data)=>{return data.text()}).then((data) => {dataURL = data});
+
+function changeID(event) {
+    socket.emit("changeUserID", IdWindow.value);
+}
+    
+function changeSrc(arg) {
+    let tempTarget = arg;
+    if (tempTarget.substr(0, 8) != 'https://'&&tempTarget.substr(0, 7) != 'http://') {tempTarget = 'https://' + tempTarget}
+    Frame.src = tempTarget;
+}
+
+function changeUnblSrc(arg) {
+    let tempTarget = arg;
+    if (tempTarget.substr(0, 8) != 'https://'&&tempTarget.substr(0, 7) != 'http://'&&tempTarget.substr(0, 5) != 'data:') {tempTarget = 'https://' + tempTarget}
+    Frame.src = 'data:text/html;base64,'+btoa(`<link rel="stylesheet" type="text/css" href="data:text/css;base64,Ym9keSwgZW1iZWQsIGlmcmFtZSB7Cglwb3NpdGlvbjogYWJzb2x1dGU7CglkaXNwbGF5OiBibG9jazsKCXdpZHRoOiAxMDAlOwoJaGVpZ2h0OiAxMDAlOwoJbWFyZ2luOiAwcHg7CglwYWRkaW5nOiAwcHg7Cglib3JkZXI6IG5vbmU7CglvdmVyZmxvdzogaGlkZGVuOwp9Cg==" /> <embed src="${tempTarget}" />`);
+}
+    
+function restartEngine() {
+    Frame.src = 'https://swisscows.com/en';
+}
+function menu() {
+    if (Menu.style.display == 'none') {
+        Menu.style.display = 'block';
+        Frame.style.display = 'none';
+    }
+    else {
+        Menu.style.display = 'none';
+        Frame.style.display = 'initial';
+    }
+}
+function fullscreen() {
+    Frame.requestFullscreen();
+    menu();
+}
+
+function runCode() {
+    eval(textArea.value);
+}
+
+function sendMessage(body, reciever) {
+    if (body.trim() != ''){
+        socket.emit("message", {
+            body: body.trim(),
+            reciever: reciever
+        });
+    }
+    messageToSend.value = '';
+}
+
+function putMessage(body, reciever, sender) {
+    let temp = document.createElement("p");
+    temp.innerHTML = `<p> From: <strong>${sender}</strong> To: <strong>${reciever}:</strong> ${body}</p>`;
+    recievedMessages.appendChild(temp);
+    recievedMessages.scrollBy(0, 99999);
+}
+    
+function clearMessages() {
+    messageList = []
+    recievedMessages.innerHTML = "<p id='recievedMessages'><strong>Recieved Messages Go Here:</strong></p>"
+}
+
+function fart() {
+    new Audio('fart.mp3').play();
+}
+
 </script>
+
+    
