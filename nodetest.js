@@ -96,7 +96,7 @@ io.on('connection', socket => {
     console.log(socket.custom.userID +" ("+socket.custom.person+")" + ' HAS CONNECTED FROM ' + socket.handshake.address);
 });
 
-const port = 80;
+const port = 3000;
 
 server.listen(port, () => {console.log("SERVER STARTED");});
 
