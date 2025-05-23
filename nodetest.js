@@ -1,8 +1,14 @@
-const http = require('http');
+const https = require('https');
 const socketio = require('socket.io');
 const fs = require('fs');
 const readline = require('readline');
 const { stdin: input, stdout: output } = require('node:process');
+const options = {
+    key: fs.readFileSync("server.key"),
+    cert: fs.readFileSync("server.cert"),
+};
+
+
 
 const rl = readline.createInterface({ input, output });
 var returningUsers = JSON.parse(fs.readFileSync("returningUsers.json"));
@@ -42,7 +48,7 @@ rl.on("line", data => {
 var myText = fs.readFileSync('index.html');
 
 
-const server = http.createServer((req, res) => {
+const server = https.createServer(options, (req, res) => {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/html');
     res.end(myText);
