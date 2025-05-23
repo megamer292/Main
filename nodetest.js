@@ -4,8 +4,8 @@ const fs = require('fs');
 const readline = require('readline');
 const { stdin: input, stdout: output } = require('node:process');
 const options = {
-    key: fs.readFileSync("server.key"),
-    cert: fs.readFileSync("server.cert"),
+    key: fs.readFileSync("ca-key.pem"),
+    cert: fs.readFileSync("cert.pem"),
 };
 
 
