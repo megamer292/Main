@@ -1,3 +1,8 @@
+.search-bar {
+  right: 50%;
+  down: 50%;
+  background-color: rgb(60, 60, 60);
+}
 body {
   background-color: rgb(50, 50, 50);
 }
