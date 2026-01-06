@@ -3,9 +3,11 @@
 }
 .search-bar {
   width: 50%;
+  height: 15%;
   background-color: rgb(60, 60, 60);
   text-align: center;
   margin-left: 25%;
+  margin-top: 50%;
 }
 body {
   background-color: rgb(50, 50, 50);
