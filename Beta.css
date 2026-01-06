@@ -2,7 +2,7 @@
   width: 50%;
   background-color: rgb(60, 60, 60);
   text-align: center;
-  margin-left: calc((100%-width)/2)
+  margin-left: 25%;
 }
 body {
   background-color: rgb(50, 50, 50);
