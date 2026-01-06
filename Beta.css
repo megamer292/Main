@@ -12,6 +12,8 @@
   border-right: none;               /* Removes double border between elements */
   border-width: 4px;
   font-size: 1.5rem;
+  outline: none;
+  color: #dddddd;
 }
 body {
   background-color: rgb(50, 50, 50);
