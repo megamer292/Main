@@ -15,6 +15,9 @@
   outline: none;
   color: #dddddd;
 }
+.search-bar:hover {
+  background-color: rgb(120, 120, 120);
+}
 body {
   background-color: rgb(30, 30, 30);
 }
