@@ -11,7 +11,7 @@
   border-radius: 9999px 9999px 9999px 9999px; /* Rounds only left corners */
   border-right: none;               /* Removes double border between elements */
   border-width: 3px;
-  font-size: 3rem;
+  font-size: 2rem;
 }
 body {
   background-color: rgb(50, 50, 50);
