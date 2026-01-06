@@ -8,7 +8,7 @@
   text-align: center;
   margin-left: 25%;
   margin-top: 15%;
-  border-radius: 9999px 0 0 9999px; /* Rounds only left corners */
+  border-radius: 9999px 9999px 9999px 9999px; /* Rounds only left corners */
   border-right: none;               /* Removes double border between elements */
 
 }
