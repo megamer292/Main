@@ -1,6 +1,15 @@
 * {
   color: #ffffff;
 }
+body {
+  background-color: rgb(50, 50, 50);
+}
+button {
+  width: 15%;
+  height: 5%;
+  background-color: rgb(20, 20, 20);
+  border-radius: 10px 10px 10px 10px; 
+}
 .search-bar {
   width: 50%;
   height: 10%;
@@ -8,8 +17,7 @@
   text-align: center;
   margin-left: 25%;
   margin-top: 15%;
-  border-radius: 9999px 9999px 9999px 9999px; /* Rounds only left corners */
-  border-right: none;               /* Removes double border between elements */
+  border-radius: 9999px 9999px 9999px 9999px;
   border-width: 4px;
   font-size: 1.5rem;
   outline: none;
@@ -17,8 +25,5 @@
 }
 .search-bar:hover {
   background-color: rgb(90, 90, 90);
-}
-body {
-  background-color: rgb(50, 50, 50);
 }
 
