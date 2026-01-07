@@ -8,6 +8,7 @@ button {
   width: 8%;
   height: 8%;
   background-color: rgb(20, 20, 20);
+  cursor: pointer;
   border-type: solid;
   border-radius: 2vh 2vh 2vh 2vh; 
   border-width: 0.5vh;
