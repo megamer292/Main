@@ -9,7 +9,7 @@ button {
   height: 8%;
   background-color: rgb(20, 20, 20);
   border-radius: 2vh 2vh 2vh 2vh; 
-  border-width: 5px;
+  border-width: 0.8vh;
   font-size: 3vh;
 }
 .search-bar {
@@ -20,7 +20,7 @@ button {
   margin-left: 25%;
   margin-top: 15%;
   border-radius: 9999px 9999px 9999px 9999px;
-  border-width: 0.4vh;
+  border-width: 0.8vh;
   font-size: 4vh;
   outline: none;
   color: #dddddd;
