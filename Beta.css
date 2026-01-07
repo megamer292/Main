@@ -14,6 +14,9 @@ button {
   border-width: 0.5vh;
   font-size: 3vh;
 }
+button:active {
+  background-color: rgb(40, 40, 40);
+}
 .search-bar {
   width: 50%;
   height: 10%;
