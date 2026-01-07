@@ -5,6 +5,7 @@ body {
   background-color: rgb(20, 20, 20);
 }
 button {
+  margin: auto;
   width: 8%;
   height: 8%;
   background-color: rgb(40, 40, 40);
@@ -18,13 +19,15 @@ button {
 button:active {
   background-color: rgb(60, 60, 60);
 }
+.main-menu {
+  
+}
 .search-bar {
   width: 50%;
   height: 10%;
   background-color: rgb(70, 70, 70);
   text-align: center;
-  margin-left: 25%;
-  margin-top: 15%;
+  margin: auto;
   border-radius: 9999px 9999px 9999px 9999px;
   border-width: 0.8vh;
   font-size: 4vh;
