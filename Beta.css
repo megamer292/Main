@@ -31,8 +31,9 @@ button:active {
   background-color: rgb(70, 70, 70);
   text-align: center;
   margin: auto;
+  border-style: solid;
   border-radius: 9999px 9999px 9999px 9999px;
-  border-color: rgb(20, 20, 20);
+  border-color: rgb(20, 20, 20) rgb(20, 20, 20) rgb(50, 50, 50) rgb(50, 50, 50);
   border-width: 0.8vh;
   font-size: 4vh;
   outline: none;
