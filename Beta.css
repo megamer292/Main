@@ -2,6 +2,9 @@
   color: #ffffff;
 }
 body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: rgb(20, 20, 20);
 }
 button {
@@ -20,10 +23,7 @@ button:active {
   background-color: rgb(60, 60, 60);
 }
 .main-menu {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh
+
 }
 .search-bar {
   width: 50%;
