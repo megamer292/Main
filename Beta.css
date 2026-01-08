@@ -26,8 +26,8 @@ button:active {
 
 }
 .search-bar {
-  width: 50%;
-  height: 10%;
+  width: 100vh;
+  height: 10vh;
   background-color: rgb(70, 70, 70);
   text-align: center;
   margin: auto;
