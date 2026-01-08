@@ -6,8 +6,8 @@ body {
 }
 button {
   margin: auto;
-  width: 8%;
-  height: 8%;
+  width: 16vh;
+  height: 8vh;
   background-color: rgb(40, 40, 40);
   cursor: pointer;
   border-style: solid;
