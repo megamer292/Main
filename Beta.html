@@ -32,9 +32,11 @@
         }
     }
     function openURL() {
-        let tempTarget = InputBar.value;
-        if (tempTarget.substr(0, 8) != 'https://'&&tempTarget.substr(0, 7) != 'http://') {tempTarget = 'https://' + tempTarget}
-        Frame.src = tempTarget;
-        changeMenu();
+        if (tempTarget != "") {
+            let tempTarget = InputBar.value;
+            if (tempTarget.substr(0, 8) != 'https://'&&tempTarget.substr(0, 7) != 'http://') {tempTarget = 'https://' + tempTarget}
+            Frame.src = tempTarget;
+            changeMenu();
+        }
     }
 </script>
