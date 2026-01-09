@@ -2,6 +2,8 @@
   color: #ffffff;
 }
 body {
+  padding: none;
+  margin: none;
   display: flex;
   justify-content: center;
   align-items: center;
