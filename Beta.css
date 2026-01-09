@@ -25,6 +25,7 @@ button:active {
   background-color: rgb(60, 60, 60);
 }
 iframe {
+  position: absolute;
   border: none;
   margin: 0;
   margin-bottom: none;
