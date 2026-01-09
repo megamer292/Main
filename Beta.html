@@ -23,6 +23,7 @@
 </body>
 <script>
     const Frame = document.getElementById("iframe");
+    const InputBar = document.querySelector("input");
     function changeMenu() {
         if (Frame.style.display == "none") {
             Frame.style.display = "initial";
@@ -31,7 +32,7 @@
         }
     }
     function openURL() {
-        Frame.src = document.querySelector("input");
+        Frame.src = InputBar.value
         changeMenu();
     }
 </script>
