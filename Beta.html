@@ -34,7 +34,7 @@
     function openURL() {
         let tempTarget = Inputbar.value;
         if (tempTarget.substr(0, 8) != 'https://'&&tempTarget.substr(0, 7) != 'http://') {tempTarget = 'https://' + tempTarget}
-        Frame.src = tempTarget
+        Frame.src = tempTarget;
         changeMenu();
     }
 </script>
