@@ -32,10 +32,28 @@ iframe {
   height: 100%;
   width: 100%;
 }
-.drop-down-menu {
+.dropdown-menu {
+  margin: auto;
+  width: 16vh;
+  height: 8vh;
+  background-color: rgb(40, 40, 40);
+  border-style: solid;
+  border-color: rgb(70, 70, 70);
+  border-radius: 2vh 2vh 2vh 2vh; 
+  border-width: 0.5vh;
+  font-size: 3vh;
+}
+.dropdown-content {
+  position: absolute;
+  background-color: rgb(40, 40, 40);
+  border-style: solid;
+  border-color: rgb(70, 70, 70);
+  border-radius: 2vh 2vh 2vh 2vh; 
+  border-width: 0.5vh;
+}
+.dropdown-button {
   
 }
-.{drop-down}
 .main-menu {
 
 }
