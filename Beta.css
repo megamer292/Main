@@ -45,11 +45,15 @@ iframe {
 }
 .dropdown-content {
   position: absolute;
+  display: none;
   background-color: rgb(40, 40, 40);
   border-style: solid;
   border-color: rgb(70, 70, 70);
   border-radius: 2vh 2vh 2vh 2vh; 
   border-width: 0.5vh;
+}
+.dropdown-menu:hover .dropdown-content {
+  display: block;
 }
 .dropdown-button {
   margin: auto;
