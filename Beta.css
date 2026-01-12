@@ -32,6 +32,9 @@ iframe {
   height: 100%;
   width: 100%;
 }
+.dropdown {
+  position: relative;
+}
 .dropdown-menu {
   margin: auto;
   width: 16vh;
@@ -52,7 +55,7 @@ iframe {
   border-radius: 2vh 2vh 2vh 2vh; 
   border-width: 0.5vh;
 }
-.dropdown-menu:hover .dropdown-content {
+.dropdown:hover .dropdown-content {
   display: block;
 }
 .dropdown-button {
