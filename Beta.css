@@ -65,10 +65,7 @@ iframe {
   height: 8vh;
   background-color: rgb(40, 40, 40);
   cursor: pointer;
-  border-style: solid;
-  border-color: rgb(70, 70, 70);
-  border-radius: 2vh 2vh 2vh 2vh; 
-  border-width: 0.5vh;
+  border-style: none;
   font-size: 3vh;
 }
 .main-menu {
