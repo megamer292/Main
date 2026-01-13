@@ -22,6 +22,9 @@ button {
   border-width: 0.5vh;
   font-size: 3vh;
 }
+button:hover {
+  background-color: rgb(50, 50, 50);
+}
 button:active {
   background-color: rgb(60, 60, 60);
 }
