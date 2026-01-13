@@ -38,6 +38,7 @@ iframe {
 }
 .dropdown {
   position: relative;
+  margin: auto;
 }
 .dropdown-menu {
   margin: auto;
