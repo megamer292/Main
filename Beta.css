@@ -74,6 +74,9 @@ iframe {
 .main-menu {
 
 }
+.options  {
+  justify-contents: center;
+}
 .search-bar {
   width: 100vh;
   height: 10vh;
