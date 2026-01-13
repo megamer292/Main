@@ -11,7 +11,7 @@ body {
 }
 button {
   margin: auto;
-  display: block;
+  display: inline-block;
   width: 16vh;
   height: 8vh;
   background-color: rgb(40, 40, 40);
