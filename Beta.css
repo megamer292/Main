@@ -76,6 +76,7 @@ iframe {
 
 }
 .options  {
+  display: flax;
   justify-contents: center;
 }
 .search-bar {
