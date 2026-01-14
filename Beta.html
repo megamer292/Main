@@ -10,8 +10,8 @@
         </div>
         <br/>
         <div class="options">
-            <button class="open-button" onclick="runJS()">Console</button>
-            <button class="open-button" onclick="openURL()">Open</button>
+            <button onclick="runJS()">Console</button>
+            <button onclick="openURL()">Open</button>
             <div class="dropdown">
                 <button style="display: inline;" class="dropdown-menu">Default</button>
                 <div class="dropdown-content">
@@ -41,6 +41,7 @@
         }
     }
     function openURL() {
+        alert("RAN");
         if (tempTarget != "") {
             let tempTarget = InputBar.value;
             if (tempTarget.substr(0, 8) != 'https://'&&tempTarget.substr(0, 7) != 'http://') {tempTarget = 'https://' + tempTarget}
