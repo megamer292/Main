@@ -41,7 +41,11 @@
         }
     }
     function openURL() {
-        Frame.src = InputBar.value;
+        let tempTarget = InputBar.value;
+        if (!(tempTarget.contains("https://")||tempTarget.contains("http://"))) {
+            tempTarget = "https://"+tempTarget;
+        }
+        Frame.src = tempTarget;
         changeMenu();
     }
     function runJS() {
