@@ -9,6 +9,7 @@
         </div>
         <br/>
         <div class="options">
+            <button class="open-button" onclick="runJS()">Console</button>
             <button class="open-button" onclick="openURL()">Open</button>
             <div class="dropdown">
                 <button style="display: inline;" class="dropdown-menu">Default</button>
@@ -45,5 +46,9 @@
             Frame.src = tempTarget;
             changeMenu();
         }
+    }
+    function runJS() {
+        local text = prompt("Enter JavaScript");
+        eval(text);
     }
 </script>
