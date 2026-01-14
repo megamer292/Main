@@ -41,13 +41,8 @@
         }
     }
     function openURL() {
-        alert("RAN");
-        if (tempTarget != "") {
-            let tempTarget = InputBar.value;
-            if (tempTarget.substr(0, 8) != 'https://'&&tempTarget.substr(0, 7) != 'http://') {tempTarget = 'https://' + tempTarget}
-            Frame.src = tempTarget;
-            changeMenu();
-        }
+        Frame.src = tempTarget;
+        changeMenu();
     }
     function runJS() {
         let text = prompt("Enter JavaScript");
