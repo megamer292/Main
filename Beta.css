@@ -73,7 +73,8 @@ iframe {
   font-size: 3vh;
 }
 .main-menu {
-
+  display: flex;
+  justify-contents: center;
 }
 .options  {
   width: 50vh;
