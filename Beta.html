@@ -42,7 +42,7 @@
     }
     function openURL() {
         let tempTarget = InputBar.value;
-        if (!(tempTarget.contains("https://")||tempTarget.contains("http://"))) {
+        if (!(tempTarget.includes("https://")||tempTarget.includes("http://"))) {
             tempTarget = "https://"+tempTarget;
         }
         Frame.src = tempTarget;
