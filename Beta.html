@@ -37,8 +37,9 @@
     
     // Dropdown menu functionality
     $(".type-button").each((index, value) => {
+        value.innerText = "hihihi";
         value.onclick = function() {
-            value.Parent.innerText = value.innerText
+            value.Parent.innerText = value.innerText;
         }
     })
     
