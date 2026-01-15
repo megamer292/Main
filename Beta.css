@@ -17,7 +17,7 @@ button {
   padding: 2vh
   display: inline-block;
   min-width: 16vh;
-  height: 8vh;
+  min-height: 8vh;
   background-color: rgb(40, 40, 40);
   cursor: pointer;
   border-style: solid;
