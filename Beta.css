@@ -67,6 +67,7 @@ iframe {
   cursor: pointer;
   border: none;
   font-size: 3vh;
+  white-space: normal;
 }
 .main-menu {
   display: block;
