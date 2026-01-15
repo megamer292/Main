@@ -39,7 +39,7 @@
     $(".type-button").each((index, value) => {
         value.onclick = function() {
             $("#type-selector")[0].innerText = value.innerText;
-            value.Parent.style.display = "none;"
+            value.parentElement.style.display = "none"
         }
     })
     
