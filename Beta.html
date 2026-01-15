@@ -15,8 +15,8 @@
             <div class="dropdown">
                 <button style="display: inline;" class="dropdown-menu">Default</button>
                 <div class="dropdown-content">
-                    <button class="dropdown-button">Default</button>
-                    <button class="dropdown-button">Unblocker V1</button>
+                    <button class="dropdown-button type-button">Default</button>
+                    <button class="dropdown-button type-button">Unblocker V1</button>
                 </div>
             </div>
         </div>
@@ -31,8 +31,17 @@
 <button style="border-radius: 100%; position: absolute; top: 10vh; right: 10vh;" onclick="changeMenu()">Menu</button>
 </body>
 <script>
+    //Declare variables
     const Frame = document.getElementById("iframe");
     const InputBar = document.querySelector("input");
+    
+    // Dropdown menu functionality
+    $(".type-button").each((index, value) => {
+        value.onclick = function() {
+            value.Parent.innerText = value.innerText
+        }
+    })
+    
     function changeMenu() {
         if (Frame.style.display == "none") {
             Frame.style.display = "initial";
