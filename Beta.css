@@ -14,7 +14,7 @@ iframe {
 }
 button {
   margin: auto;
-  padding: 2vh
+  padding: 4vh
   display: inline-block;
   min-width: 16vh;
   min-height: 8vh;
@@ -45,15 +45,6 @@ iframe {
   margin: auto;
 }
 .dropdown-menu {
-  margin: auto;
-  width: 16vh;
-  height: 8vh;
-  background-color: rgb(40, 40, 40);
-  border-style: solid;
-  border-color: rgb(70, 70, 70);
-  border-radius: 2vh 2vh 2vh 2vh; 
-  border-width: 0.5vh;
-  font-size: 3vh;
 }
 .dropdown-content {
   position: absolute;
