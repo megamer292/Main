@@ -61,12 +61,10 @@ iframe {
 }
 .dropdown-button {
   margin: auto;
-  width: 16vh;
+  display: block;
   height: 8vh;
   background-color: rgb(40, 40, 40);
-  cursor: pointer;
   border: none;
-  font-size: 3vh;
   white-space: normal;
 }
 .main-menu {
