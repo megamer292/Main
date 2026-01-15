@@ -25,6 +25,7 @@ button {
   border-radius: 2vh 2vh 2vh 2vh; 
   border-width: 0.5vh;
   font-size: 3vh;
+  white-space: nowrap;
 }
 button:hover {
   background-color: rgb(50, 50, 50);
