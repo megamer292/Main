@@ -50,7 +50,7 @@
 		e.preventDefault();
 		e.stopPropagation();
 
-		if (e.ctrlKey && e.altKey && !e.shiftKey && !e.metaKey) {
+		if (e.ctrlKey && !e.shiftKey && !e.metaKey) {
 			const w = win.open(void 0, "_blank", "");
 			if (w != null) {
 				const doc = w.document;
