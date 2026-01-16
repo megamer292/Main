@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="referrer" content="no-referrer" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<base href="https://nettleweb.com/" target="_blank" />
+		<link rel="icon" type="image/x-icon" href="res/favicon.ico" />
+		<link rel="stylesheet" type="text/css" href="data:text/css;base64,Ym9keSxlbWJlZCxpZnJhbWV7cG9zaXRpb246YWJzb2x1dGU7ZGlzcGxheTpibG9jazt3aWR0aDoxMDAlO2hlaWdodDoxMDAlO21hcmdpbjowcHg7cGFkZGluZzowcHg7Ym9yZGVyOm5vbmU7b3ZlcmZsb3c6aGlkZGVuO30K" />
+		<title>Google</title>
+	</head>
+	<body>
+		<div>Loading...</div>
+		<script>
+"use strict"; debugger; (async ({ window: win, document: doc }) => {
+	if (doc.readyState !== "complete") {
+		await new Promise((resolve) => {
+			const callback = () => {
+				if (doc.readyState === "complete") {
+					doc.removeEventListener("readystatechange", callback);
+					setTimeout(resolve, 500, null);
+				}
+			};
+			doc.addEventListener("readystatechange", callback, { passive: true });
+		});
+	}
+
+	const body = doc.body;
+	win.stop();
+	win.focus();
+
+	await new Promise((resolve) => {
+		setTimeout(resolve, 1000, null);
+	});
+
+	body.innerHTML = "";
+
+	const f1 = doc.createElement("embed");
+	f1.setAttribute("type", "text/plain");
+	f1.setAttribute("width", "1024");
+	f1.setAttribute("height", "768");
+	f1.setAttribute("src", "https://www.google.com/webhp?igu=1");
+	body.appendChild(f1);
+
+	const elem = doc.createElement("div");
+	elem.setAttribute("style", "position:absolute;display:block;width:85px;height:40px;top:10px;right:25px;z-index:10000;");
+	elem.setAttribute("data-elemattr", "null");
+	elem.setAttribute("data-clickable", "false");
+	elem.onmousedown = (e) => {
+		e.preventDefault();
+		e.stopPropagation();
+
+		if (e.ctrlKey && e.altKey && !e.shiftKey && !e.metaKey) {
+			const w = win.open(void 0, "_blank", "");
+			if (w != null) {
+				const doc = w.document;
+				doc.head.innerHTML = "<meta http-equiv=\"Content-Type\" content=\"text/html;charset=utf-8\"/><meta http-equiv=\"Referrer-Policy\" content=\"no-referrer\"/><meta name=\"referrer\" content=\"no-referrer\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"/><base href=\"https://nettleweb.com/\" target=\"_blank\" /><link rel=\"icon\" type=\"image/x-icon\" href=\"res/google.ico\" /><link rel=\"stylesheet\" type=\"text/css\" href=\"data:text/css;base64,Ym9keSxlbWJlZCxpZnJhbWV7cG9zaXRpb246YWJzb2x1dGU7ZGlzcGxheTpibG9jazt3aWR0aDoxMDAlO2hlaWdodDoxMDAlO21hcmdpbjowcHg7cGFkZGluZzowcHg7Ym9yZGVyOm5vbmU7b3ZlcmZsb3c6aGlkZGVuO30K\"/>";
+				doc.body.innerHTML = "<embed type=\"text/plain\" width=\"1024\" height=\"768\" src=\"https://nettleweb.com/embed.html\" />";
+				doc.title = "Google";
+
+				w.focus();
+				doc.documentElement.focus({ preventScroll: true });
+			}
+		}
+	};
+	body.appendChild(elem);
+})(self);
+		</script>
+	</body>
+</html>
